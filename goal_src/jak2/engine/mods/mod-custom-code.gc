@@ -1,0 +1,503 @@
+    ;;-*-Lisp-*-
+    (in-package goal)
+
+    ;; name: mod-custom-code.gc
+    ;; name in dgo: mod-custom-code
+    ;; dgos: TODO
+
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; What is this file for.
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    #| This file contains function defenitions that are pre placed in the mod base,
+    so if you place custom code inside of these functions, it will exectue based on
+    the name of the function, for example, if you place (set! (-> *game-info* fuel) (+ (-> *game-info* fuel) 1))
+    to the function named runs-on-orb-pickup, then jaks powercell count will increase each time you collect
+    an orb |#
+
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; Begin function defintions.
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (define *mod-hint-shown* #f)
+    (define *mod-hint-active* #f)
+    (define *mod-hint-grabbed* #f)
+    (defun begin-game-mod-explanation-hint ()
+      ;; Trigger hint when in prison for first time
+      (when (and *target*
+                (not *mod-hint-shown*)
+                (= (-> (level-get-target-inside *level*) name) 'prison)
+                (not (task-node-closed? (game-task-node begin-game-mod-explanation-hint-done)))
+                (pause-allowed?)
+                (not *scene-player*)
+                )
+        (set! *mod-hint-active* #t)
+        (set! *mod-hint-shown* #t)
+        )
+      ;; Grab jak once active
+      (when (and *mod-hint-active* *target* (not *mod-hint-grabbed*))
+        (when (process-grab? *target* #f)
+          (set! *mod-hint-grabbed* #t)
+          )
+        )
+      ;; Draw text while active
+      (when *mod-hint-active*
+        (set-setting! 'play-hints #f 0.0 0)
+        (logclear! (-> *cpad-list* cpads 0 button0-abs 0) (pad-buttons start))
+        (logclear! (-> *cpad-list* cpads 0 button0-rel 0) (pad-buttons start))
+        (hide-hud-quick (the-as symbol 'hud-health))
+        (hide-hud-quick (the-as symbol 'hud-dark-eco-symbol))
+        (hide-hud-quick (the-as symbol 'hud-map))
+        (hide-hud-quick (the-as symbol 'hud-skill))
+        (hide-hud-quick (the-as symbol 'hud-skullgem))
+        (hide-hud-quick (the-as symbol 'hud-gun))
+        (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id progress))
+          (dma-buffer-add-gs-set-flusha buf
+            (alpha-1 (new 'static 'gs-alpha :b #x1 :d #x1))
+            (tex1-1 (new 'static 'gs-tex1 :mmag #x1 :mmin #x1))
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 80 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.6)
+            (pc-encode-utf8-string (string-format "Welcome to Jak the Mercenary") *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 100 0.0 (font-color default) (font-flags shadow kerning middle large))))
+                  (set! (-> font-ctx scale) 0.5)
+                  (pc-encode-utf8-string (string-format "by atrueboss") *pc-encoded-temp-string*)
+                  (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+                  )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 145 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.5)
+            (pc-encode-utf8-string (string-format "This mod features 3 extra missions") *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 160 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.5)
+            (pc-encode-utf8-string (string-format "that you can access from the side") *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 175 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.5)
+            (pc-encode-utf8-string (string-format "mission kiosks in three areas:") *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 190 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.5)
+            (pc-encode-utf8-string (string-format "Water Slums, Central Plaza and Bazaar") *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 230 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.5)
+            (pc-encode-utf8-string (string-format "The missions need to be unlocked by") *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 245 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.5)
+            (pc-encode-utf8-string (string-format "playing through the game about halfway.") *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 260 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.5)
+            (pc-encode-utf8-string (string-format "You can play the game to reach that point") *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 275 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.5)
+            (pc-encode-utf8-string (string-format "or just skip ahead from here.") *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 320 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.6)
+            (format (clear *temp-string*) "Press ~S and ~S to skip ahead"
+              (lookup-text! *common-text* (text-id pad-l1) #f)
+              (lookup-text! *common-text* (text-id pad-triangle) #f))
+            (pc-encode-utf8-string *temp-string* *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 350 0.0 (font-color default) (font-flags shadow kerning middle large))))
+            (set! (-> font-ctx scale) 0.6)
+            (format (clear *temp-string*) "Press ~S and ~S to start normally"
+              (lookup-text! *common-text* (text-id pad-l1) #f)
+              (lookup-text! *common-text* (text-id pad-x) #f))
+            (pc-encode-utf8-string *temp-string* *pc-encoded-temp-string*)
+            (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+            )
+          )
+        ;; L1 + Δ skip ahead logic
+        (when (and (cpad-hold? 0 l1) (cpad-pressed? 0 triangle))
+          (logclear! (-> *cpad-list* cpads 0 button0-abs 0) (pad-buttons confirm x))
+          (logclear! (-> *cpad-list* cpads 0 button0-rel 0) (pad-buttons confirm x))
+          (when *mod-hint-grabbed*
+            (process-release? *target*)
+            (set! *mod-hint-grabbed* #f)
+            )
+          (task-node-close! (game-task-node city-protect-water-slums-resolution))
+          (task-node-close! (game-task-node city-intercept-tanker-resolution))
+          (send-event *target* 'continue (get-continue-by-name *game-info* "ctyslumc-start"))
+          (remove-setting! 'play-hints)
+          (hide-hud-quick #f)
+          (set! *mod-hint-active* #f)
+          (task-node-close! (game-task-node begin-game-mod-explanation-hint-done))
+          )
+        ;; L1 + X continue logic
+        (when (and (cpad-hold? 0 l1) (cpad-pressed? 0 confirm))
+          (logclear! (-> *cpad-list* cpads 0 button0-abs 0) (pad-buttons confirm x))
+          (logclear! (-> *cpad-list* cpads 0 button0-rel 0) (pad-buttons confirm x))
+          (when *mod-hint-grabbed*
+            (process-release? *target*)
+            (set! *mod-hint-grabbed* #f)
+            )
+          (remove-setting! 'play-hints)
+          (hide-hud-quick #f)
+          (set! *mod-hint-active* #f)
+          (task-node-close! (game-task-node begin-game-mod-explanation-hint-done))
+          )
+      )
+    (none)
+    )
+
+    (defun wider-view () ;; Set camera fov to 94.0 (way better imo)
+      (set-setting-by-param *setting-control* 'fov #f (* 182.04445 94) 0) 
+    )
+
+    (define *hover-cam-hint-start* (the-as time-frame -1))
+    (defun better-hover-cam ()
+      ;; hover + square brings camera with you
+      (when *target*
+        (if (and (board-hovering?) (cpad-hold? 0 square))
+            (set-setting-by-param *setting-control* 'slave-options 'clear 0 16)
+            (remove-setting-by-arg0 *setting-control* 'slave-options)
+            )
+        )
+      ;; Start timer on first hover
+      (when (and *target*
+                (board-hovering?)
+                (not (task-node-closed? (game-task-node hover-cam-hint-done)))
+                (= *hover-cam-hint-start* -1)
+                )
+        (set! *hover-cam-hint-start* (-> *display* real-clock frame-counter))
+        )
+      ;; Draw text while timer active
+      (when (not (= *hover-cam-hint-start* -1))
+        (cond
+          ;; Still within 6 seconds — draw hint
+          ((< (- (-> *display* real-clock frame-counter) *hover-cam-hint-start*) (seconds 6))
+          (when (not *progress-process*)
+            (set-setting! 'play-hints #f 0.0 0)
+            (hide-hud-quick (the-as symbol 'hud-health))
+            (hide-hud-quick (the-as symbol 'hud-dark-eco-symbol))
+            (hide-hud-quick (the-as symbol 'hud-map))
+            (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id progress))
+              (dma-buffer-add-gs-set-flusha buf
+                (alpha-1 (new 'static 'gs-alpha :b #x1 :d #x1))
+                (tex1-1 (new 'static 'gs-tex1 :mmag #x1 :mmin #x1))
+                )
+              (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 310 0.0 (font-color default) (font-flags shadow kerning middle large))))
+                (set! (-> font-ctx scale) 0.7)
+                (format (clear *temp-string*) "While hovering, hold ~S to"
+                  (lookup-text! *common-text* (text-id pad-square) #f))
+                (pc-encode-utf8-string *temp-string* *pc-encoded-temp-string*)
+                (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+                )
+              (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 340 0.0 (font-color default) (font-flags shadow kerning middle large))))
+                (set! (-> font-ctx scale) 0.7)
+                (pc-encode-utf8-string (string-format "bring the camera with you") *pc-encoded-temp-string*)
+                (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+                )
+              )
+            )
+          )
+          ;; 6 seconds elapsed — always clean up and close
+          (else
+            (remove-setting! 'play-hints)
+            (hide-hud-quick #f)
+            (format #t "closing hover-cam-hint-done, currently closed: ~A~%"
+              (task-node-closed? (game-task-node hover-cam-hint-done)))
+            (task-node-close! (game-task-node hover-cam-hint-done))
+            (format #t "after close, closed: ~A~%"
+              (task-node-closed? (game-task-node hover-cam-hint-done)))
+            (set! *hover-cam-hint-start* -1)
+            )
+          )
+        )
+      (none)
+      )
+
+    (defun mod-override-init-position ((obj process-drawable) (arg0 entity-actor)) ;; Thanks barg :)
+      (case (-> obj name) :comp name=
+        (('burning-bush-13) ;; city-burning-bush-get-to-6 / burning-bush-markb-2
+          (set-vector-meters! (-> arg0 extra trans) 416.67   8.40   422.77)  ;; in tanker attack area
+          (set-vector! (-> arg0 quat)  0.00   0.99   0.00   -0.01))
+      )
+      (none)
+    )
+
+    ;; Global scale for fading
+    (define *merc-slumc-rod-scale* 1.0)
+    (define *merc-genc-rod-scale* 1.0)
+    (define *merc-markb-rod-scale* 1.0)
+    (defun merc-spawn-start-arrow ()
+      (cond
+        ((= (level-status *level* 'ctywide) 'active)
+        (when (and (not (task-node-closed? (game-task-node city-burning-bush-slumc-mercenary-discover)))
+                   (task-node-closed? (game-task-node city-protect-water-slums-resolution))
+                   (not (process-by-name "merc-slumc-rod-of-god" *active-pool*))
+                   )
+          (add-icon! *minimap* *dproc* (the-as uint 15) 12345 (new 'static 'vector :x (meters 766.16) :y (meters 8.41) :z (meters -723.03) :w 1.0) 0)
+          (process-spawn-function process-drawable
+            (lambda :behavior process-drawable ()
+              (set! (-> self part) (create-launch-control group-rod-of-god self))
+              (loop
+                (set! (-> *part-id-table* 267 init-specs 4 initial-valuef) (* 24576.0 *merc-slumc-rod-scale*))
+                (set! (-> *part-id-table* 270 init-specs 3 initial-valuef) (* 65536.0 *merc-slumc-rod-scale*))
+                (set! (-> *part-id-table* 268 init-specs 9 initial-valuef) (* 20.0 *merc-slumc-rod-scale*))
+                (spawn (-> self part) (new 'static 'vector :x (meters 766.16) :y (meters 8.41) :z (meters -723.03) :w 1.0))
+                (suspend)
+                )
+              )
+            :to *entity-pool*
+            :name "merc-slumc-rod-of-god"
+            )
+          )
+        (when (and (not (task-node-closed? (game-task-node city-burning-bush-genc-mercenary-discover)))
+                   (task-node-closed? (game-task-node atoll-battle-resolution))
+                   (not (process-by-name "merc-genc-rod-of-god" *active-pool*))
+                   )
+          (add-icon! *minimap* *dproc* (the-as uint 15) 12346 (new 'static 'vector :x (meters 75.44) :y (meters 7.99) :z (meters 329.87) :w 1.0) 0)
+          (process-spawn-function process-drawable
+            (lambda :behavior process-drawable ()
+              (set! (-> self part) (create-launch-control group-rod-of-god self))
+              (loop
+                (set! (-> *part-id-table* 267 init-specs 4 initial-valuef) (* 24576.0 *merc-genc-rod-scale*))
+                (set! (-> *part-id-table* 270 init-specs 3 initial-valuef) (* 65536.0 *merc-genc-rod-scale*))
+                (set! (-> *part-id-table* 268 init-specs 9 initial-valuef) (* 20.0 *merc-genc-rod-scale*))
+                (spawn (-> self part) (new 'static 'vector :x (meters  80.36) :y (meters 7.99) :z (meters 329.87) :w 1.0))
+                (suspend)
+                )
+              )
+            :to *entity-pool*
+            :name "merc-genc-rod-of-god"
+            )
+          )
+        (when (and (not (task-node-closed? (game-task-node city-burning-bush-markb-mercenary-discover)))
+                   (task-node-closed? (game-task-node city-intercept-tanker-resolution))
+                   (not (process-by-name "merc-markb-rod-of-god" *active-pool*))
+                   )
+          (add-icon! *minimap* *dproc* (the-as uint 15) 12347 (new 'static 'vector :x (meters 416.67) :y (meters 8.40) :z (meters 422.77) :w 1.0) 0)
+          (process-spawn-function process-drawable
+            (lambda :behavior process-drawable ()
+              (set! (-> self part) (create-launch-control group-rod-of-god self))
+              (loop
+                (set! (-> *part-id-table* 267 init-specs 4 initial-valuef) (* 24576.0 *merc-markb-rod-scale*))
+                (set! (-> *part-id-table* 270 init-specs 3 initial-valuef) (* 65536.0 *merc-markb-rod-scale*))
+                (set! (-> *part-id-table* 268 init-specs 9 initial-valuef) (* 20.0 *merc-markb-rod-scale*))
+                (spawn (-> self part) (new 'static 'vector :x (meters 416.25) :y (meters 8.40) :z (meters 428.40) :w 1.0))
+                (suspend)
+                )
+              )
+            :to *entity-pool*
+            :name "merc-markb-rod-of-god"
+            )
+          )
+        )
+        (else
+        (kill-by-key (-> *minimap* engine) 12345)
+        (kill-by-key (-> *minimap* engine) 12346)
+        (kill-by-key (-> *minimap* engine) 12347)
+        (let ((beam-proc (process-by-name "merc-slumc-rod-of-god" *active-pool*)))
+          (when beam-proc (deactivate beam-proc))
+          )
+        (let ((beam-proc (process-by-name "merc-genc-rod-of-god" *active-pool*)))
+          (when beam-proc (deactivate beam-proc))
+          )
+        (let ((beam-proc (process-by-name "merc-markb-rod-of-god" *active-pool*)))
+          (when beam-proc (deactivate beam-proc))
+          )
+        )
+        )
+      (none)
+      )
+
+    ;; Call every frame from runs-every-frame
+    (defun merc-update-start-arrow ()
+      (when *target*
+        (when (and (in-bubble? (meters 766.16) (meters 8.41) (meters -723.03) (meters 50.0))
+                  (task-node-closed? (game-task-node city-protect-water-slums-resolution))
+                  (= (level-status *level* 'ctyslumc) 'active)
+                )
+          (kill-by-key (-> *minimap* engine) 12345)
+          (task-node-close! (game-task-node city-burning-bush-slumc-mercenary-discover))
+          ;; Fade out rod-of-god via scale
+          (process-spawn-function process
+            (lambda :behavior process ()
+              (while (> *merc-slumc-rod-scale* 0.0)
+                (+! *merc-slumc-rod-scale* (* -8.0 (seconds-per-frame)))
+                (suspend)
+                )
+              (set! *merc-slumc-rod-scale* 0.0)
+              (let ((beam-proc (process-by-name "merc-slumc-rod-of-god" *active-pool*)))
+                (when beam-proc (deactivate beam-proc))
+                )
+              (set! *merc-slumc-rod-scale* 1.0)
+              )
+            :to *entity-pool*
+            :name "merc-slumc-fade"
+            )
+          )
+        (when (and (in-bubble? (meters 75.44) (meters 7.99) (meters 329.87) (meters 50.0))
+                  (task-node-closed? (game-task-node atoll-battle-resolution))
+                  (= (level-status *level* 'ctygenc) 'active)
+                )
+          (kill-by-key (-> *minimap* engine) 12346)
+          (task-node-close! (game-task-node city-burning-bush-genc-mercenary-discover))
+          ;; Fade out rod-of-god via scale
+          (process-spawn-function process
+            (lambda :behavior process ()
+              (while (> *merc-genc-rod-scale* 0.0)
+                (+! *merc-genc-rod-scale* (* -8.0 (seconds-per-frame)))
+                (suspend)
+                )
+              (set! *merc-genc-rod-scale* 0.0)
+              (let ((beam-proc (process-by-name "merc-genc-rod-of-god" *active-pool*)))
+                (when beam-proc (deactivate beam-proc))
+                )
+              (set! *merc-slumc-rod-scale* 1.0)
+              )
+            :to *entity-pool*
+            :name "merc-genc-fade"
+            )
+          )
+        (when (and (in-bubble? (meters 416.67) (meters 8.40) (meters 422.77) (meters 50.0))
+                  (task-node-closed? (game-task-node city-intercept-tanker-resolution))
+                  (= (level-status *level* 'ctymarkb) 'active)
+                )
+          (kill-by-key (-> *minimap* engine) 12347)
+          (task-node-close! (game-task-node city-burning-bush-markb-mercenary-discover))
+          (process-spawn-function process
+            (lambda :behavior process ()
+              (while (> *merc-markb-rod-scale* 0.0)
+                (+! *merc-markb-rod-scale* (* -8.0 (seconds-per-frame)))
+                (suspend)
+                )
+              (set! *merc-markb-rod-scale* 0.0)
+              (let ((beam-proc (process-by-name "merc-markb-rod-of-god" *active-pool*)))
+                (when beam-proc (deactivate beam-proc))
+                )
+              (set! *merc-markb-rod-scale* 1.0)
+              )
+            :to *entity-pool*
+            :name "merc-markb-fade"
+            )
+          )
+        )
+      (none)
+      )
+
+    (defun runs-every-frame ()
+      ;; (increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
+
+      ;; Failed attempt at getting past the onin tent problem in ctymarkb
+      ;; (cond 
+      ;;   ( (and (= (level-status *level* 'ctymarkb) 'active)                 ;; if in this level 
+      ;;          (in-bubble? (meters 482.31) (meters  8.40) (meters 473.04)   ;; location x y z 
+      ;;                      (meters 100.0)                                   ;; bubble size
+      ;;          )
+      ;;          (!= (level-status *level* 'extras-ctymarkb) 'active)         ;; if it's not loaded already     
+      ;;     )
+      ;;     (script-eval '(want-load    'ctymarkb 'ctywide 'ctypal 'extras-ctymarkb))
+      ;;     (script-eval '(want-display 'extras-ctymarkb 'display))
+      ;;   )
+      ;; )
+
+      (if *show-input-display* 
+        (input-display-on)
+        (input-display-off)
+        )
+
+      (when *debug-segment*
+        (orb-placer-maintenance)
+        )
+
+      (begin-game-mod-explanation-hint)
+      (better-hover-cam)
+      (merc-spawn-start-arrow)
+      (merc-update-start-arrow)
+
+      (none)
+      )
+
+    (defun runs-on-gem-pickup ()
+      ;; Code here runs on any scout fly pickup
+
+      (none)
+      )
+
+    (defun runs-on-task-close ()
+    
+
+      (none)
+      )
+
+    (defun runs-on-eco-pickup ((eco-type pickup-type) (parent process-tree))
+      (let* ((from-vent? #f))
+        ;; Code here runs as soon as you pickup ANY eco
+
+        (case eco-type
+          (((pickup-type eco-yellow))      
+            ;; Code here runs as soon as you pickup yellow eco
+
+            )
+          (((pickup-type eco-red))      
+            ;; Code here runs as soon as you pickup red eco
+
+            )
+          (((pickup-type eco-blue))      
+            ;; Code here runs as soon as you pickup blue eco
+
+            )
+
+          (((pickup-type eco-green))      
+            ;; Code here runs as soon as you pickup big green eco 
+
+            )
+          )
+        
+        (when from-vent?
+          ;; Code here runs only if the eco was picked up from a vent
+
+          )
+        )
+
+      (none)
+      )
+
+    (defun runs-on-jak-spawn ()
+      ;; Code here runs every time jak spawns (loading a file new game or death)   
+      (wider-view)
+      (none)
+      )
+
+    (defun runs-on-jak-death ((death-event symbol))
+      (case death-event
+        (('dying)
+          ;; Code here runs immediately every time jak dies, before any death animation or death cutscene
+          
+          )
+        (('blackout)
+          ;; Code here runs after jak dies (and any death cutscene finishes), during the blackout before he spawns
+
+          )
+        )
+      
+      (none)
+      )
+
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; deprecated function defintions.
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    #| these are no longer recommended/supported however we include them anyways to not break anyones mods.
+    |#
