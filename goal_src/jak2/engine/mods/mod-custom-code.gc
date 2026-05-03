@@ -60,7 +60,7 @@
             )
           (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 80 0.0 (font-color default) (font-flags shadow kerning middle large))))
             (set! (-> font-ctx scale) 0.6)
-            (pc-encode-utf8-string (string-format "Welcome to Jak the Mercenary") *pc-encoded-temp-string*)
+            (pc-encode-utf8-string (string-format "Welcome to Jak II: Special Edition!") *pc-encoded-temp-string*)
             (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
             )
           (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 100 0.0 (font-color default) (font-flags shadow kerning middle large))))
