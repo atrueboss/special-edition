@@ -2528,8 +2528,9 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 4096)
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-palcab)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -2608,8 +2609,9 @@
     :activate-func #f
     :deactivate-func 'palshaft-deactivate
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160)
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-palshaft)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -2790,8 +2792,9 @@
     :activate-func 'palroof-activate
     :deactivate-func 'palroof-deactivate
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160)
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-palroof)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -3762,8 +3765,9 @@
     :activate-func 'fortress-activate
     :deactivate-func 'fortress-deactivate
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160)
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-forresca)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -3943,8 +3947,9 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160)
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-fordumpa)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris '*fortress-pris-texture-anim-array*
@@ -7585,8 +7590,9 @@
     :activate-func 'farm-activate
     :deactivate-func #f
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160)
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-ctyfarma)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
     :texture-anim-shrub #f
@@ -16145,12 +16151,24 @@
 (define extras-ctyslumc        (extras-borrow-level #xA3 'extras-ctyslumc        'extras-ctyslumc-vis        'esc 'update-mood-ctyslumc))
 (define extras-ctygenc         (extras-borrow-level #xA4 'extras-ctygenc         'extras-ctygenc-vis         'egc 'update-mood-copy-ctywide))
 (define extras-forest          (extras-borrow-level #xA6 'extras-forest          'extras-forest-vis          'efo 'update-mood-forest))
+(define extras-ctyfarma        (extras-borrow-level #xA5 'extras-ctyfarma        'extras-ctyfarma-vis        'efa 'update-mood-ctyport))
+(define extras-fordumpa        (extras-borrow-level #xA7 'extras-fordumpa        'extras-fordumpa-vis        'efd 'update-mood-fordumpa))
+(define extras-forresca        (extras-borrow-level #xA8 'extras-forresca        'extras-forresca-vis        'efr 'update-mood-forresca))
+(define extras-palcab          (extras-borrow-level #xA9 'extras-palcab          'extras-palcab-vis          'epc 'update-mood-palcab))
+(define extras-palroof         (extras-borrow-level #xAA 'extras-palroof         'extras-palroof-vis         'epr 'update-mood-palroof))
+(define extras-palshaft        (extras-borrow-level #xAB 'extras-palshaft        'extras-palshaft-vis        'eps 'update-mood-palshaft))
 
 (#when PC_PORT
   (cons! *level-load-list* 'test-zone)
   (cons! *level-load-list* 'extras-ctyslumc)
   (cons! *level-load-list* 'extras-ctygenc)
   (cons! *level-load-list* 'extras-forest)
+  (cons! *level-load-list* 'extras-ctyfarma)
+  (cons! *level-load-list* 'extras-fordumpa)
+  (cons! *level-load-list* 'extras-forresca)
+  (cons! *level-load-list* 'extras-palcab)
+  (cons! *level-load-list* 'extras-palroof)
+  (cons! *level-load-list* 'extras-palshaft)
   (cons! *level-load-list* 'merc-slumc)
   (cons! *level-load-list* 'merc-genc)
   (cons! *level-load-list* 'merc-markb)

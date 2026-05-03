@@ -315,6 +315,30 @@
 (goal-src "levels/extras-forest/extras-forest.gc" "process-focusable")
 (custom-level-cgo "EFO.DGO" "extras-forest/extras-forest.gd")
 
+(build-custom-level "extras-ctyfarma")
+(goal-src "levels/extras-ctyfarma/extras-ctyfarma.gc" "process-focusable")
+(custom-level-cgo "EFA.DGO" "extras-ctyfarma/extras-ctyfarma.gd")
+
+(build-custom-level "extras-fordumpa")
+(goal-src "levels/extras-fordumpa/extras-fordumpa.gc" "process-focusable")
+(custom-level-cgo "EFD.DGO" "extras-fordumpa/extras-fordumpa.gd")
+
+(build-custom-level "extras-forresca")
+(goal-src "levels/extras-forresca/extras-forresca.gc" "process-focusable")
+(custom-level-cgo "EFR.DGO" "extras-forresca/extras-forresca.gd")
+
+(build-custom-level "extras-palcab")
+(goal-src "levels/extras-palcab/extras-palcab.gc" "process-focusable")
+(custom-level-cgo "EPC.DGO" "extras-palcab/extras-palcab.gd")
+
+(build-custom-level "extras-palroof")
+(goal-src "levels/extras-palroof/extras-palroof.gc" "process-focusable")
+(custom-level-cgo "EPR.DGO" "extras-palroof/extras-palroof.gd")
+
+(build-custom-level "extras-palshaft")
+(goal-src "levels/extras-palshaft/extras-palshaft.gc" "process-focusable")
+(custom-level-cgo "EPS.DGO" "extras-palshaft/extras-palshaft.gd")
+
 (build-custom-level "merc-slumc")
 (goal-src "levels/merc-slumc/merc-slumc.gc" "process-focusable")
 (custom-level-cgo "MSC.DGO" "merc-slumc/merc-slumc.gd")
