@@ -51,5 +51,16 @@
                 ],
 
   "actors" : [
+    {
+      "trans": [39.75,   7.70, 1776.40], // translation
+      "etype": "burning-bush",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [-0.00,  -0.00,  -0.00,  -0.99], // rotation
+      "bsphere": [39.75,   7.70, 1776.40, 10], // bounding sphere
+      "lump": {
+        "name":"burning-bush-72",
+        "task-actor": ["int32", 71]
+      }
+    }
   ]
 }

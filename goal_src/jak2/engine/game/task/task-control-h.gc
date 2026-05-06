@@ -84,6 +84,7 @@
   (burning-bush-slumc-2 68)
   (burning-bush-genc-3 69)
   (burning-bush-forest 70)
+  (burning-bush-port-4 71)
   )
 
 (defenum game-task-action
@@ -181,9 +182,10 @@
   (gaticon-69)
   ;; custom entries
   (gaticon-70) ;; metalhead (dummy entry)
-  (gaticon-71) ;; merc-genc
-  (gaticon-72) ;; merc-markb
+  (gaticon-71) ;; merc-slumc
+  (gaticon-72) ;; merc-genc
   (gaticon-73) ;; merc-markb
+  (gaticon-74) ;; bbush-port-4
   )
 
 (defenum task-manager-mask

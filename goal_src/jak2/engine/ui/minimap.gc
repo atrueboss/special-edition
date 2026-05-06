@@ -263,7 +263,7 @@
     )
   )
 
-(define *minimap-class-list* (new 'static 'inline-array minimap-class-node 74 ;; <- increased array size from 71
+(define *minimap-class-list* (new 'static 'inline-array minimap-class-node 75 ;; <- increased array size from 71
                                (new 'static 'minimap-class-node
                                  :default-position (new 'static 'vector :w 1.0)
                                  :flags (minimap-flag trail bigmap)
@@ -844,6 +844,14 @@
                                   :default-position (new 'static 'vector :x (meters 416.67) :y (meters 8.40) :z (meters 422.77) :w 1.0)
                                   :flags (minimap-flag bigmap city-only)
                                   :name "bbush-markb-merc"
+                                  :icon-xy (new 'static 'vector2ub :data (new 'static 'array uint8 2 #x2 #x3))
+                                  :scale 1.0
+                                  :color (new 'static 'rgba :r #xff :g #xff :b #xff :a #x80)
+                                  )
+                                (new 'static 'minimap-class-node
+                                  :default-position (new 'static 'vector :x (meters 39.75) :y (meters 7.70) :z (meters 1776.40) :w 1.0)
+                                  :flags (minimap-flag bigmap city-only)
+                                  :name "bbush-port-4"
                                   :icon-xy (new 'static 'vector2ub :data (new 'static 'array uint8 2 #x2 #x3))
                                   :scale 1.0
                                   :color (new 'static 'rgba :r #xff :g #xff :b #xff :a #x80)

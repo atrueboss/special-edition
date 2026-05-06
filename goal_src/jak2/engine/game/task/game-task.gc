@@ -798,7 +798,7 @@
             :kiosk-play-node (game-task-node city-burning-bush-racepoint-1-resolution)
             :pre-play-continue #f
             :play-node (game-task-node city-burning-bush-racepoint-1-resolution)
-            :play-continue "ctymarka-burning-bush"
+            :play-continue "ctyport-burning-bush-4"
             :kiosk-play-continue #f
             )
           (new 'static 'game-task-info
@@ -10350,7 +10350,7 @@
             :name "city-burning-bush-racepoint-1-introduction"
             :when-open (new 'static 'boxed-array :type game-task-event
               (new 'static 'game-task-event
-                :actor (game-task-actor burning-bush-marka)
+                :actor (game-task-actor burning-bush-port-4)
                 :action (game-task-action show)
                 :tex (game-task-icon gaticon-04)
                 :scene "bb10int"
@@ -10358,7 +10358,7 @@
               (new 'static 'game-task-event
                 :actor (game-task-actor minimap)
                 :action (game-task-action show)
-                :tex (game-task-icon gaticon-57)
+                :tex (game-task-icon gaticon-74)
                 :scene #f
                 )
               )
@@ -10373,8 +10373,8 @@
             :info #f
             :borrow '()
             :open? (lambda ((arg0 game-task-node-info)) (or (not (task-node-closed? (game-task-node forest-scouts-resolution)))
-                                                     (task-node-closed? (game-task-node city-escort-kid-resolution))
-                                                     )
+                                                            (task-node-closed? (game-task-node city-escort-kid-resolution))
+                                                            )
                     )
             :on-close #f
             )
@@ -10403,7 +10403,7 @@
               :intro-scene #f
               :resolution-scene #f
               :resolution-scene-continue #f
-              :retry-continue "ctymarka-burning-bush"
+              :retry-continue "ctyport-burning-bush-4"
               :fail-continue #f
               :init-hook #f
               :cleanup-hook #f
@@ -10414,7 +10414,7 @@
               :event-hook #f
               :final-node (game-task-node city-burning-bush-racepoint-1-resolution)
               :on-complete '(begin (talker-spawn "bb14win") (apply ,(lambda () (send-event *target* 'get-pickup (pickup-type skill) (-> *FACT-bank* super-skill-inc))))) ;; og:preserve-this patched
-              :on-fail #f
+              :on-fail '(talker-spawn "bb10fail")
               )
             :borrow '()
             :open? #f

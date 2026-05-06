@@ -7369,6 +7369,30 @@
           )
         :want-sound (new 'static 'array symbol 3 'ctywide1 'ctywide2 'ctywide3)
         )
+      (new 'static 'continue-point
+        :name "ctyport-burning-bush-4"
+        :level 'ctyport
+        :flags (continue-flags no-auto)
+        :trans (new 'static 'vector :x (meters 39.8081) :y (meters 7.6999) :z (meters 1782.5744) :w 1.0)
+        :quat (new 'static 'vector :y -0.9983 :w 0.0579)
+        :camera-trans (new 'static 'vector :x (meters 44.7829) :y (meters 12.7499) :z (meters 1793.6348) :w 1.0)
+        :camera-rot (new 'static 'inline-array vector3s 3
+          (new 'static 'vector3s :data (new 'static 'array float 3 -0.9125 0.0000 0.4089))
+          (new 'static 'vector3s :data (new 'static 'array float 3 -0.0495 0.9926 -0.1105))
+          (new 'static 'vector3s :data (new 'static 'array float 3 -0.4059 -0.1211 -0.9058))
+          )
+        :on-goto #f
+        :vis-nick 'ctyport
+        :want (new 'static 'inline-array level-buffer-state 6
+          (new 'static 'level-buffer-state :name 'ctyport :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name 'ctywide :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          )
+        :want-sound (new 'static 'array symbol 3 'ctywide1 'ctywide2 'ctywide3)
+        )
       )
     :tasks '()
     :priority 100
