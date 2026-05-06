@@ -321,79 +321,79 @@
       )
 
     ;; Call every frame from runs-every-frame
-    (defun merc-update-start-arrow ()
-      (when *target*
-        (when (and (in-bubble? (meters 766.16) (meters 8.41) (meters -723.03) (meters 50.0))
-                  (task-node-closed? (game-task-node city-protect-water-slums-resolution))
-                  (= (level-status *level* 'ctyslumc) 'active)
-                )
-          (kill-by-key (-> *minimap* engine) 12345)
-          (task-node-close! (game-task-node city-burning-bush-slumc-mercenary-discover))
-          ;; Fade out rod-of-god via scale
-          (process-spawn-function process
-            (lambda :behavior process ()
-              (while (> *merc-slumc-rod-scale* 0.0)
-                (+! *merc-slumc-rod-scale* (* -8.0 (seconds-per-frame)))
-                (suspend)
-                )
-              (set! *merc-slumc-rod-scale* 0.0)
-              (let ((beam-proc (process-by-name "merc-slumc-rod-of-god" *active-pool*)))
-                (when beam-proc (deactivate beam-proc))
-                )
-              (set! *merc-slumc-rod-scale* 1.0)
-              )
-            :to *entity-pool*
-            :name "merc-slumc-fade"
-            )
-          )
-        (when (and (in-bubble? (meters 75.44) (meters 7.99) (meters 329.87) (meters 50.0))
-                  (task-node-closed? (game-task-node atoll-battle-resolution))
-                  (= (level-status *level* 'ctygenc) 'active)
-                )
-          (kill-by-key (-> *minimap* engine) 12346)
-          (task-node-close! (game-task-node city-burning-bush-genc-mercenary-discover))
-          ;; Fade out rod-of-god via scale
-          (process-spawn-function process
-            (lambda :behavior process ()
-              (while (> *merc-genc-rod-scale* 0.0)
-                (+! *merc-genc-rod-scale* (* -8.0 (seconds-per-frame)))
-                (suspend)
-                )
-              (set! *merc-genc-rod-scale* 0.0)
-              (let ((beam-proc (process-by-name "merc-genc-rod-of-god" *active-pool*)))
-                (when beam-proc (deactivate beam-proc))
-                )
-              (set! *merc-slumc-rod-scale* 1.0)
-              )
-            :to *entity-pool*
-            :name "merc-genc-fade"
-            )
-          )
-        (when (and (in-bubble? (meters 416.67) (meters 8.40) (meters 422.77) (meters 50.0))
-                  (task-node-closed? (game-task-node city-intercept-tanker-resolution))
-                  (= (level-status *level* 'ctymarkb) 'active)
-                )
-          (kill-by-key (-> *minimap* engine) 12347)
-          (task-node-close! (game-task-node city-burning-bush-markb-mercenary-discover))
-          (process-spawn-function process
-            (lambda :behavior process ()
-              (while (> *merc-markb-rod-scale* 0.0)
-                (+! *merc-markb-rod-scale* (* -8.0 (seconds-per-frame)))
-                (suspend)
-                )
-              (set! *merc-markb-rod-scale* 0.0)
-              (let ((beam-proc (process-by-name "merc-markb-rod-of-god" *active-pool*)))
-                (when beam-proc (deactivate beam-proc))
-                )
-              (set! *merc-markb-rod-scale* 1.0)
-              )
-            :to *entity-pool*
-            :name "merc-markb-fade"
-            )
-          )
-        )
-      (none)
-      )
+    ;; (defun merc-update-start-arrow ()
+    ;;   (when *target*
+    ;;     (when (and (in-bubble? (meters 766.16) (meters 8.41) (meters -723.03) (meters 50.0))
+    ;;               (task-node-closed? (game-task-node city-protect-water-slums-resolution))
+    ;;               (= (level-status *level* 'ctyslumc) 'active)
+    ;;             )
+    ;;       (kill-by-key (-> *minimap* engine) 12345)
+    ;;       (task-node-close! (game-task-node city-burning-bush-slumc-mercenary-discover))
+    ;;       ;; Fade out rod-of-god via scale
+    ;;       (process-spawn-function process
+    ;;         (lambda :behavior process ()
+    ;;           (while (> *merc-slumc-rod-scale* 0.0)
+    ;;             (+! *merc-slumc-rod-scale* (* -8.0 (seconds-per-frame)))
+    ;;             (suspend)
+    ;;             )
+    ;;           (set! *merc-slumc-rod-scale* 0.0)
+    ;;           (let ((beam-proc (process-by-name "merc-slumc-rod-of-god" *active-pool*)))
+    ;;             (when beam-proc (deactivate beam-proc))
+    ;;             )
+    ;;           (set! *merc-slumc-rod-scale* 1.0)
+    ;;           )
+    ;;         :to *entity-pool*
+    ;;         :name "merc-slumc-fade"
+    ;;         )
+    ;;       )
+    ;;     (when (and (in-bubble? (meters 75.44) (meters 7.99) (meters 329.87) (meters 50.0))
+    ;;               (task-node-closed? (game-task-node atoll-battle-resolution))
+    ;;               (= (level-status *level* 'ctygenc) 'active)
+    ;;             )
+    ;;       (kill-by-key (-> *minimap* engine) 12346)
+    ;;       (task-node-close! (game-task-node city-burning-bush-genc-mercenary-discover))
+    ;;       ;; Fade out rod-of-god via scale
+    ;;       (process-spawn-function process
+    ;;         (lambda :behavior process ()
+    ;;           (while (> *merc-genc-rod-scale* 0.0)
+    ;;             (+! *merc-genc-rod-scale* (* -8.0 (seconds-per-frame)))
+    ;;             (suspend)
+    ;;             )
+    ;;           (set! *merc-genc-rod-scale* 0.0)
+    ;;           (let ((beam-proc (process-by-name "merc-genc-rod-of-god" *active-pool*)))
+    ;;             (when beam-proc (deactivate beam-proc))
+    ;;             )
+    ;;           (set! *merc-slumc-rod-scale* 1.0)
+    ;;           )
+    ;;         :to *entity-pool*
+    ;;         :name "merc-genc-fade"
+    ;;         )
+    ;;       )
+    ;;     (when (and (in-bubble? (meters 416.67) (meters 8.40) (meters 422.77) (meters 50.0))
+    ;;               (task-node-closed? (game-task-node city-intercept-tanker-resolution))
+    ;;               (= (level-status *level* 'ctymarkb) 'active)
+    ;;             )
+    ;;       (kill-by-key (-> *minimap* engine) 12347)
+    ;;       (task-node-close! (game-task-node city-burning-bush-markb-mercenary-discover))
+    ;;       (process-spawn-function process
+    ;;         (lambda :behavior process ()
+    ;;           (while (> *merc-markb-rod-scale* 0.0)
+    ;;             (+! *merc-markb-rod-scale* (* -8.0 (seconds-per-frame)))
+    ;;             (suspend)
+    ;;             )
+    ;;           (set! *merc-markb-rod-scale* 0.0)
+    ;;           (let ((beam-proc (process-by-name "merc-markb-rod-of-god" *active-pool*)))
+    ;;             (when beam-proc (deactivate beam-proc))
+    ;;             )
+    ;;           (set! *merc-markb-rod-scale* 1.0)
+    ;;           )
+    ;;         :to *entity-pool*
+    ;;         :name "merc-markb-fade"
+    ;;         )
+    ;;       )
+    ;;     )
+    ;;   (none)
+    ;;   )
 
     (defun runs-every-frame ()
       ;; (increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
@@ -422,8 +422,8 @@
 
       (begin-game-mod-explanation-hint)
       (better-hover-cam)
-      (merc-spawn-start-arrow)
-      (merc-update-start-arrow)
+      ;; (merc-spawn-start-arrow)
+      ;; (merc-update-start-arrow)
 
       (none)
       )
