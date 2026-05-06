@@ -7382,8 +7382,9 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160)
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-ctyport)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
     :texture-anim-shrub #f
@@ -16157,6 +16158,7 @@
 (define extras-palcab          (extras-borrow-level #xA9 'extras-palcab          'extras-palcab-vis          'epc 'update-mood-palcab))
 (define extras-palroof         (extras-borrow-level #xAA 'extras-palroof         'extras-palroof-vis         'epr 'update-mood-palroof))
 (define extras-palshaft        (extras-borrow-level #xAB 'extras-palshaft        'extras-palshaft-vis        'eps 'update-mood-palshaft))
+(define extras-ctyport         (extras-borrow-level #xAC 'extras-ctyport         'extras-ctyport-vis         'ecp 'update-mood-ctyport))
 
 (#when PC_PORT
   (cons! *level-load-list* 'test-zone)
@@ -16169,6 +16171,7 @@
   (cons! *level-load-list* 'extras-palcab)
   (cons! *level-load-list* 'extras-palroof)
   (cons! *level-load-list* 'extras-palshaft)
+  (cons! *level-load-list* 'extras-ctyport)
   (cons! *level-load-list* 'merc-slumc)
   (cons! *level-load-list* 'merc-genc)
   (cons! *level-load-list* 'merc-markb)

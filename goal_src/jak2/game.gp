@@ -339,6 +339,10 @@
 (goal-src "levels/extras-palshaft/extras-palshaft.gc" "process-focusable")
 (custom-level-cgo "EPS.DGO" "extras-palshaft/extras-palshaft.gd")
 
+(build-custom-level "extras-ctyport")
+(goal-src "levels/extras-ctyport/extras-ctyport.gc" "process-focusable")
+(custom-level-cgo "ECP.DGO" "extras-ctyport/extras-ctyport.gd")
+
 (build-custom-level "merc-slumc")
 (goal-src "levels/merc-slumc/merc-slumc.gc" "process-focusable")
 (custom-level-cgo "MSC.DGO" "merc-slumc/merc-slumc.gd")
