@@ -260,65 +260,50 @@
             :to *entity-pool*
             :name "merc-slumc-rod-of-god"
             )
-          )
-        (when (and (not (task-node-closed? (game-task-node city-burning-bush-genc-mercenary-discover)))
-                   (task-node-closed? (game-task-node atoll-battle-resolution))
-                   (not (process-by-name "merc-genc-rod-of-god" *active-pool*))
-                   )
-          (add-icon! *minimap* *dproc* (the-as uint 15) 12346 (new 'static 'vector :x (meters 75.44) :y (meters 7.99) :z (meters 329.87) :w 1.0) 0)
-          (process-spawn-function process-drawable
-            (lambda :behavior process-drawable ()
-              (set! (-> self part) (create-launch-control group-rod-of-god self))
-              (loop
-                (set! (-> *part-id-table* 267 init-specs 4 initial-valuef) (* 24576.0 *merc-genc-rod-scale*))
-                (set! (-> *part-id-table* 270 init-specs 3 initial-valuef) (* 65536.0 *merc-genc-rod-scale*))
-                (set! (-> *part-id-table* 268 init-specs 9 initial-valuef) (* 20.0 *merc-genc-rod-scale*))
-                (spawn (-> self part) (new 'static 'vector :x (meters  80.36) :y (meters 7.99) :z (meters 329.87) :w 1.0))
-                (suspend)
-                )
-              )
-            :to *entity-pool*
-            :name "merc-genc-rod-of-god"
-            )
-          )
-        (when (and (not (task-node-closed? (game-task-node city-burning-bush-markb-mercenary-discover)))
-                   (task-node-closed? (game-task-node city-intercept-tanker-resolution))
-                   (not (process-by-name "merc-markb-rod-of-god" *active-pool*))
-                   )
-          (add-icon! *minimap* *dproc* (the-as uint 15) 12347 (new 'static 'vector :x (meters 416.67) :y (meters 8.40) :z (meters 422.77) :w 1.0) 0)
-          (process-spawn-function process-drawable
-            (lambda :behavior process-drawable ()
-              (set! (-> self part) (create-launch-control group-rod-of-god self))
-              (loop
-                (set! (-> *part-id-table* 267 init-specs 4 initial-valuef) (* 24576.0 *merc-markb-rod-scale*))
-                (set! (-> *part-id-table* 270 init-specs 3 initial-valuef) (* 65536.0 *merc-markb-rod-scale*))
-                (set! (-> *part-id-table* 268 init-specs 9 initial-valuef) (* 20.0 *merc-markb-rod-scale*))
-                (spawn (-> self part) (new 'static 'vector :x (meters 416.25) :y (meters 8.40) :z (meters 428.40) :w 1.0))
-                (suspend)
-                )
-              )
-            :to *entity-pool*
-            :name "merc-markb-rod-of-god"
-            )
+    (defun region-hacks ()
+      ;; == palcab
+      (let ((r (region-lookup-by-id 386))) ;; 1/3 across palcab - stop this region from loading palshaft when going backwards which interrupts pal2boss
+        (when r
+          (set! (-> r on-enter) '(want-sound 'ctywide1 'palcab1 'palcab2))
           )
         )
-        (else
-        (kill-by-key (-> *minimap* engine) 12345)
-        (kill-by-key (-> *minimap* engine) 12346)
-        (kill-by-key (-> *minimap* engine) 12347)
-        (let ((beam-proc (process-by-name "merc-slumc-rod-of-god" *active-pool*)))
-          (when beam-proc (deactivate beam-proc))
-          )
-        (let ((beam-proc (process-by-name "merc-genc-rod-of-god" *active-pool*)))
-          (when beam-proc (deactivate beam-proc))
-          )
-        (let ((beam-proc (process-by-name "merc-markb-rod-of-god" *active-pool*)))
-          (when beam-proc (deactivate beam-proc))
+      (let ((r (region-lookup-by-id 385))) ;; halfway across palcab - don't load throne if we are after the cutscene
+        (when r
+          (set! (-> r on-enter) '(if (task-closed? "palace-cable-resolution")
+                                    (begin (want-load 'palcab 'palroof 'pal2boss))
+                                    (begin (want-load 'palcab 'palroof 'throne))
+                                    ))
           )
         )
+      (let ((r (region-lookup-by-id 815))) ;; checkpoint "palcab-mid" - don't load throne if we are after the cutscene
+        (when r
+          (set! (-> r on-inside) '(if (task-closed? "palace-cable-resolution")
+                                    (begin (want-load 'palcab 'palroof 'pal2boss) (want-display 'pal2boss 'display))
+                                    (begin (want-load 'palcab 'palroof 'throne))
+                                    ))
+          )
         )
-      (none)
+      (let ((r (region-lookup-by-id 623))) ;; before palboss - don't load palboss if he's dead already 
+        (when r
+          (set! (-> r on-enter) '(if (task-closed? "palace-boss-resolution")
+                                    (begin (want-sound 'ctywide1 'palcab1 'palcab2))
+                                    (begin (want-sound 'palroof1 'palroof2 'palroof3) (want-load 'palroof 'palcab 'palboss))
+                                    ))
+          )
+        )
+      ;; == mountain 
+      (let ((r (region-lookup-by-id 610))) ;; load mincan if you take shortcut
+        (when r 
+          (set! (-> r on-exit) '(want-load 'mountain 'mincan))  
+          )
+        )
+      (let ((r (region-lookup-by-id 608))) ;; load mtnext if you took shortcut
+        (when r 
+          (set! (-> r on-exit) '(begin (want-load 'mountain 'mtnext) (want-display 'mtnext 'display))) 
+          )
+        )
       )
+      
 
     ;; Call every frame from runs-every-frame
     ;; (defun merc-update-start-arrow ()
@@ -397,6 +382,7 @@
 
     (defun runs-every-frame ()
       ;; (increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
+      (region-hacks)
 
       ;; Failed attempt at getting past the onin tent problem in ctymarkb
       ;; (cond 

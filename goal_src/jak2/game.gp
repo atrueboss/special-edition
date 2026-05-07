@@ -327,9 +327,9 @@
 (goal-src "levels/extras-forresca/extras-forresca.gc" "process-focusable")
 (custom-level-cgo "EFR.DGO" "extras-forresca/extras-forresca.gd")
 
-(build-custom-level "extras-palcab")
-(goal-src "levels/extras-palcab/extras-palcab.gc" "process-focusable")
-(custom-level-cgo "EPC.DGO" "extras-palcab/extras-palcab.gd")
+(build-custom-level "pal2boss")
+(goal-src "levels/pal2boss/pal2boss.gc" "process-focusable")
+(custom-level-cgo "P2B.DGO" "pal2boss/pal2boss.gd")
 
 (build-custom-level "extras-palroof")
 (goal-src "levels/extras-palroof/extras-palroof.gc" "process-focusable")

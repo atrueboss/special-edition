@@ -270,7 +270,10 @@
     (vector-normalize-copy! (-> this root transv) (-> this init-dir) (* 327680.0 (-> pp clock frames-per-second)))
     (set! (-> this attack-mode) 'eco-blue)
     (set! (-> this max-speed) (* 327680.0 (-> pp clock frames-per-second)))
-    (set! (-> this timeout) 1)
+    (if (= (level-status *level* 'pal2boss) 'active) ;; increase bullet range when in pal2boss fight
+      (set! (-> this timeout) 10)
+      (set! (-> this timeout) 1)
+      )
     (set! (-> this move) gun-blue-shot-move)
     (vector-reset! (-> this collide-normal))
     (set! (-> this damage) (if (logtest? (game-feature gun-upgrade-damage) (-> *game-info* features))

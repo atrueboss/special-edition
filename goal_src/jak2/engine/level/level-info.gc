@@ -2528,9 +2528,8 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-size (new 'static 'array uint16 2 160 4096)
-    :borrow-level (new 'static 'array symbol 2 #f 'extras-palcab)
-    :borrow-display? (new 'static 'array symbol 2 #f 'display)
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -16109,6 +16108,57 @@
                    )
         )
 
+(define pal2boss (new 'static 'level-load-info
+                 :index #xA9
+                 :task-level #xb
+                 :name 'pal2boss
+                 :visname 'pal2boss-vis
+                 :nickname 'p2b
+                 :dbname 'pal2boss
+                 :taskname 'palace
+                 :packages '()
+                 :music-bank #f
+                 :ambient-sounds '()
+                 :mood-func 'update-mood-palcab
+                 :mood-init 'init-mood-palcab
+                 :ocean #f
+                 :sky #f
+                 :use-camera-other #t
+                 :continues '()
+                 :tasks '()
+                 :priority 100
+                 :load-commands '()
+                 :alt-load-commands '()
+                 :bsp-mask #xffffffffffffffff
+                 :buttom-height (meters -15)
+                 :run-packages '("common")
+                 :wait-for-load #t
+                 :login-func #f
+                 :activate-func #f
+                 :deactivate-func #f
+                 :kill-func #f
+                 :borrow-level (new 'static 'array symbol 2 #f #f)
+                 :borrow-display? (new 'static 'array symbol 2 #f #f)
+                 :base-task-mask (task-mask task0)
+                 :texture-anim-tfrag #f
+                 :texture-anim-pris #f
+                 :texture-anim-shrub #f
+                 :texture-anim-alpha #f
+                 :texture-anim-water #f
+                 :texture-anim-twarp #f
+                 :texture-anim-pris2 #f
+                 :texture-anim-sprite #f
+                 :texture-anim-map #f
+                 :texture-anim-sky #f
+                 :draw-priority 10.0
+                 :fog-height 327680.0
+                 :bigmap-id (bigmap-id palcab)
+                 :ocean-near-translucent? #t
+                 :ocean-far? #t
+                 :extra-sound-bank #f
+                 )
+        )
+
 (defmacro extras-level (index name visname nick mood-func level-size)
   "shorthand for setting up an extras level"
   `(new 'static 'level-load-info
@@ -16179,7 +16229,6 @@
 (define extras-ctyfarma        (extras-borrow-level #xA5 'extras-ctyfarma        'extras-ctyfarma-vis        'efa 'update-mood-ctyport))
 (define extras-fordumpa        (extras-borrow-level #xA7 'extras-fordumpa        'extras-fordumpa-vis        'efd 'update-mood-fordumpa))
 (define extras-forresca        (extras-borrow-level #xA8 'extras-forresca        'extras-forresca-vis        'efr 'update-mood-forresca))
-(define extras-palcab          (extras-borrow-level #xA9 'extras-palcab          'extras-palcab-vis          'epc 'update-mood-palcab))
 (define extras-palroof         (extras-borrow-level #xAA 'extras-palroof         'extras-palroof-vis         'epr 'update-mood-palroof))
 (define extras-palshaft        (extras-borrow-level #xAB 'extras-palshaft        'extras-palshaft-vis        'eps 'update-mood-palshaft))
 (define extras-ctyport         (extras-borrow-level #xAC 'extras-ctyport         'extras-ctyport-vis         'ecp 'update-mood-ctyport))
@@ -16192,7 +16241,7 @@
   (cons! *level-load-list* 'extras-ctyfarma)
   (cons! *level-load-list* 'extras-fordumpa)
   (cons! *level-load-list* 'extras-forresca)
-  (cons! *level-load-list* 'extras-palcab)
+  (cons! *level-load-list* 'pal2boss)
   (cons! *level-load-list* 'extras-palroof)
   (cons! *level-load-list* 'extras-palshaft)
   (cons! *level-load-list* 'extras-ctyport)

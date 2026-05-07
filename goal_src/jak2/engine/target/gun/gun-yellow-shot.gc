@@ -288,7 +288,10 @@
   (set! (-> this attack-mode) 'eco-yellow)
   (set! (-> this max-speed) 819200.0)
   (set! (-> this move) gun-yellow-shot-move)
-  (set! (-> this timeout) (seconds 0.5))
+  (if (= (level-status *level* 'pal2boss) 'active) ;; increase bullet range when in pal2boss fight
+    (set! (-> this timeout) (seconds 4.0))
+    (set! (-> this timeout) (seconds 0.5))
+    )
   (set! (-> this sound-id) (new-sound-id))
   (set! (-> this damage) (if (logtest? (game-feature gun-upgrade-damage) (-> *game-info* features))
                              4.0
