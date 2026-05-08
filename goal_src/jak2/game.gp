@@ -315,17 +315,21 @@
 (goal-src "levels/extras-forest/extras-forest.gc" "process-focusable")
 (custom-level-cgo "EFO.DGO" "extras-forest/extras-forest.gd")
 
-(build-custom-level "extras-ctyfarma")
-(goal-src "levels/extras-ctyfarma/extras-ctyfarma.gc" "process-focusable")
-(custom-level-cgo "EFA.DGO" "extras-ctyfarma/extras-ctyfarma.gd")
+(build-custom-level "ex-resca")
+(goal-src "levels/ex-resca/ex-resca.gc" "process-focusable")
+(custom-level-cgo "EXR.DGO" "ex-resca/ex-resca.gd")
 
-(build-custom-level "extras-fordumpa")
-(goal-src "levels/extras-fordumpa/extras-fordumpa.gc" "process-focusable")
-(custom-level-cgo "EFD.DGO" "extras-fordumpa/extras-fordumpa.gd")
+(build-custom-level "ex-gena")
+(goal-src "levels/ex-gena/ex-gena.gc" "process-focusable")
+(custom-level-cgo "EGA.DGO" "ex-gena/ex-gena.gd")
 
-(build-custom-level "extras-forresca")
-(goal-src "levels/extras-forresca/extras-forresca.gc" "process-focusable")
-(custom-level-cgo "EFR.DGO" "extras-forresca/extras-forresca.gd")
+(build-custom-level "fortshaft")
+(goal-src "levels/fortshaft/fortshaft.gc" "process-focusable")
+(custom-level-cgo "FOS.DGO" "fortshaft/fortshaft.gd")
+
+(build-custom-level "farmshaft")
+(goal-src "levels/farmshaft/farmshaft.gc" "process-focusable")
+(custom-level-cgo "FAS.DGO" "farmshaft/farmshaft.gd")
 
 (build-custom-level "pal2boss")
 (goal-src "levels/pal2boss/pal2boss.gc" "process-focusable")
@@ -334,10 +338,6 @@
 (build-custom-level "extras-palroof")
 (goal-src "levels/extras-palroof/extras-palroof.gc" "process-focusable")
 (custom-level-cgo "EPR.DGO" "extras-palroof/extras-palroof.gd")
-
-(build-custom-level "extras-palshaft")
-(goal-src "levels/extras-palshaft/extras-palshaft.gc" "process-focusable")
-(custom-level-cgo "EPS.DGO" "extras-palshaft/extras-palshaft.gd")
 
 (build-custom-level "extras-ctyport")
 (goal-src "levels/extras-ctyport/extras-ctyport.gc" "process-focusable")

@@ -2608,9 +2608,8 @@
     :activate-func #f
     :deactivate-func 'palshaft-deactivate
     :kill-func #f
-    :borrow-size (new 'static 'array uint16 2 160 160)
-    :borrow-level (new 'static 'array symbol 2 #f 'extras-palshaft)
-    :borrow-display? (new 'static 'array symbol 2 #f 'display)
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -2791,9 +2790,8 @@
     :activate-func 'palroof-activate
     :deactivate-func 'palroof-deactivate
     :kill-func #f
-    :borrow-size (new 'static 'array uint16 2 160 160)
-    :borrow-level (new 'static 'array symbol 2 #f 'extras-palroof)
-    :borrow-display? (new 'static 'array symbol 2 #f 'display)
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -3721,6 +3719,7 @@
     :dbname 'forresca
     :taskname 'fortress
     :packages '(hoverp guardp forresca)
+    ;; :memory-mode (load-buffer-mode small-center)
     :music-bank 'fortress
     :ambient-sounds '()
     :mood-func 'update-mood-forresca
@@ -3743,8 +3742,8 @@
         :vis-nick 'forresca
         :want (new 'static 'inline-array level-buffer-state 6
           (new 'static 'level-buffer-state :name 'forresca :display? 'display :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name 'forrescb :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name 'ex-resca :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name 'forrescb :display? 'display :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
@@ -3764,9 +3763,8 @@
     :activate-func 'fortress-activate
     :deactivate-func 'fortress-deactivate
     :kill-func #f
-    :borrow-size (new 'static 'array uint16 2 160 160)
-    :borrow-level (new 'static 'array symbol 2 #f 'extras-forresca)
-    :borrow-display? (new 'static 'array symbol 2 #f 'display)
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -3800,6 +3798,7 @@
     :dbname 'forrescb
     :taskname 'fortress
     :packages '(forrescb)
+    ;; :memory-mode (load-buffer-mode small-center)
     :music-bank 'fortress
     :ambient-sounds '()
     :mood-func 'update-mood-forrescb
@@ -3879,6 +3878,7 @@
     :dbname 'fordumpa
     :taskname 'fortress
     :packages '(fordumpa)
+    ;; :memory-mode (load-buffer-mode small-center)
     :music-bank 'fortress
     :ambient-sounds '()
     :mood-func 'update-mood-fordumpa
@@ -3947,7 +3947,7 @@
     :deactivate-func #f
     :kill-func #f
     :borrow-size (new 'static 'array uint16 2 160 160)
-    :borrow-level (new 'static 'array symbol 2 #f 'extras-fordumpa)
+    :borrow-level (new 'static 'array symbol 2 #f 'ex-resca)
     :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
@@ -7615,8 +7615,8 @@
     :deactivate-func #f
     :kill-func #f
     :borrow-size (new 'static 'array uint16 2 160 160)
-    :borrow-level (new 'static 'array symbol 2 #f 'extras-ctyfarma)
-    :borrow-display? (new 'static 'array symbol 2 #f 'display)
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
     :texture-anim-shrub #f
@@ -16108,6 +16108,214 @@
                    )
         )
 
+(define ex-resca (new 'static 'level-load-info
+                 :index #xA8
+                 :task-level #x3
+                 :name 'ex-resca
+                 :visname 'ex-resca-vis
+                 :nickname 'exr
+                 :dbname 'ex-resca
+                 :taskname 'fortress
+                 :packages '()
+                 ;; :memory-mode (load-buffer-mode small-center)
+                 :music-bank #f
+                 :ambient-sounds '()
+                 :mood-func 'update-mood-fortress
+                 :mood-init 'init-mood-forresca
+                 :ocean #f
+                 :sky #f
+                 :use-camera-other #t
+                 :continues '()
+                 :tasks '()
+                 :priority 100
+                 :load-commands '()
+                 :alt-load-commands '()
+                 :bsp-mask #xffffffffffffffff
+                 :buttom-height (meters -15)
+                 :run-packages '("common")
+                 :wait-for-load #t
+                 :login-func #f
+                 :activate-func #f
+                 :deactivate-func #f
+                 :kill-func #f
+                 :borrow-level (new 'static 'array symbol 2 #f #f)
+                 :borrow-display? (new 'static 'array symbol 2 #f #f)
+                 :base-task-mask (task-mask task0)
+                 :texture-anim-tfrag #f
+                 :texture-anim-pris #f
+                 :texture-anim-shrub #f
+                 :texture-anim-alpha #f
+                 :texture-anim-water #f
+                 :texture-anim-twarp #f
+                 :texture-anim-pris2 #f
+                 :texture-anim-sprite #f
+                 :texture-anim-map #f
+                 :texture-anim-sky #f
+                 :draw-priority 10.0
+                 :fog-height 327680.0
+                 :bigmap-id (bigmap-id fortress)
+                 :ocean-near-translucent? #t
+                 :ocean-far? #t
+                 :extra-sound-bank #f
+                 )
+        )
+
+(define ex-gena (new 'static 'level-load-info
+                 :index #xA5
+                 :task-level #x1
+                 :name 'ex-gena
+                 :visname 'ex-gena-vis
+                 :nickname 'ega
+                 :dbname 'ex-gena
+                 :taskname 'city
+                 :packages '()
+                 ;; :memory-mode (load-buffer-mode small-center)
+                 :music-bank #f
+                 :ambient-sounds '()
+                 :mood-func 'update-mood-ctyport
+                 :mood-init 'init-mood-ctyport
+                 :ocean #f
+                 :sky #f
+                 :use-camera-other #t
+                 :continues '()
+                 :tasks '()
+                 :priority 100
+                 :load-commands '()
+                 :alt-load-commands '()
+                 :bsp-mask #xffffffffffffffff
+                 :buttom-height (meters -15)
+                 :run-packages '("common")
+                 :wait-for-load #t
+                 :login-func #f
+                 :activate-func #f
+                 :deactivate-func #f
+                 :kill-func #f
+                 :borrow-level (new 'static 'array symbol 2 #f #f)
+                 :borrow-display? (new 'static 'array symbol 2 #f #f)
+                 :base-task-mask (task-mask task0)
+                 :texture-anim-tfrag #f
+                 :texture-anim-pris #f
+                 :texture-anim-shrub #f
+                 :texture-anim-alpha #f
+                 :texture-anim-water #f
+                 :texture-anim-twarp #f
+                 :texture-anim-pris2 #f
+                 :texture-anim-sprite #f
+                 :texture-anim-map #f
+                 :texture-anim-sky #f
+                 :draw-priority 10.0
+                 :fog-height 327680.0
+                 :bigmap-id (bigmap-id city)
+                 :ocean-near-translucent? #t
+                 :ocean-far? #t
+                 :extra-sound-bank #f
+                 )
+        )
+
+(define fortshaft (new 'static 'level-load-info
+                 :index #xAB
+                 :task-level #xb
+                 :name 'fortshaft
+                 :visname 'fortshaft-vis
+                 :nickname 'fos
+                 :dbname 'fortshaft
+                 :taskname 'palace
+                 :packages '()
+                 ;; :memory-mode (load-buffer-mode small-center)
+                 :music-bank #f
+                 :ambient-sounds '()
+                 :mood-func 'update-mood-fortress
+                 :mood-init 'init-mood-forresca
+                 :ocean #f
+                 :sky #f
+                 :use-camera-other #t
+                 :continues '()
+                 :tasks '()
+                 :priority 100
+                 :load-commands '()
+                 :alt-load-commands '()
+                 :bsp-mask #xffffffffffffffff
+                 :buttom-height (meters -15)
+                 :run-packages '("common")
+                 :wait-for-load #t
+                 :login-func #f
+                 :activate-func #f
+                 :deactivate-func #f
+                 :kill-func #f
+                 :borrow-level (new 'static 'array symbol 2 #f #f)
+                 :borrow-display? (new 'static 'array symbol 2 #f #f)
+                 :base-task-mask (task-mask task0)
+                 :texture-anim-tfrag #f
+                 :texture-anim-pris #f
+                 :texture-anim-shrub #f
+                 :texture-anim-alpha #f
+                 :texture-anim-water #f
+                 :texture-anim-twarp #f
+                 :texture-anim-pris2 #f
+                 :texture-anim-sprite #f
+                 :texture-anim-map #f
+                 :texture-anim-sky #f
+                 :draw-priority 10.0
+                 :fog-height 327680.0
+                 :bigmap-id (bigmap-id palcab)
+                 :ocean-near-translucent? #t
+                 :ocean-far? #t
+                 :extra-sound-bank #f
+                 )
+        )
+
+(define farmshaft (new 'static 'level-load-info
+                 :index #xAC
+                 :task-level #xb
+                 :name 'farmshaft
+                 :visname 'farmshaft-vis
+                 :nickname 'fas
+                 :dbname 'farmshaft
+                 :taskname 'palace
+                 :packages '()
+                 ;; :memory-mode (load-buffer-mode small-center)
+                 :music-bank #f
+                 :ambient-sounds '()
+                 :mood-func 'update-mood-ctyport
+                 :mood-init 'init-mood-ctyport
+                 :ocean #f
+                 :sky #f
+                 :use-camera-other #t
+                 :continues '()
+                 :tasks '()
+                 :priority 100
+                 :load-commands '()
+                 :alt-load-commands '()
+                 :bsp-mask #xffffffffffffffff
+                 :buttom-height (meters -15)
+                 :run-packages '("common")
+                 :wait-for-load #t
+                 :login-func #f
+                 :activate-func #f
+                 :deactivate-func #f
+                 :kill-func #f
+                 :borrow-level (new 'static 'array symbol 2 #f #f)
+                 :borrow-display? (new 'static 'array symbol 2 #f #f)
+                 :base-task-mask (task-mask task0)
+                 :texture-anim-tfrag #f
+                 :texture-anim-pris #f
+                 :texture-anim-shrub #f
+                 :texture-anim-alpha #f
+                 :texture-anim-water #f
+                 :texture-anim-twarp #f
+                 :texture-anim-pris2 #f
+                 :texture-anim-sprite #f
+                 :texture-anim-map #f
+                 :texture-anim-sky #f
+                 :draw-priority 10.0
+                 :fog-height 327680.0
+                 :bigmap-id (bigmap-id palcab)
+                 :ocean-near-translucent? #t
+                 :ocean-far? #t
+                 :extra-sound-bank #f
+                 )
+        )
+
 (define pal2boss (new 'static 'level-load-info
                  :index #xA9
                  :task-level #xb
@@ -16226,25 +16434,21 @@
 (define extras-ctyslumc        (extras-borrow-level #xA3 'extras-ctyslumc        'extras-ctyslumc-vis        'esc 'update-mood-ctyslumc))
 (define extras-ctygenc         (extras-borrow-level #xA4 'extras-ctygenc         'extras-ctygenc-vis         'egc 'update-mood-copy-ctywide))
 (define extras-forest          (extras-borrow-level #xA6 'extras-forest          'extras-forest-vis          'efo 'update-mood-forest))
-(define extras-ctyfarma        (extras-borrow-level #xA5 'extras-ctyfarma        'extras-ctyfarma-vis        'efa 'update-mood-ctyport))
-(define extras-fordumpa        (extras-borrow-level #xA7 'extras-fordumpa        'extras-fordumpa-vis        'efd 'update-mood-fordumpa))
-(define extras-forresca        (extras-borrow-level #xA8 'extras-forresca        'extras-forresca-vis        'efr 'update-mood-forresca))
+(define extras-ctyport         (extras-borrow-level #xA7 'extras-ctyport         'extras-ctyport-vis         'ecp 'update-mood-ctyport))
 (define extras-palroof         (extras-borrow-level #xAA 'extras-palroof         'extras-palroof-vis         'epr 'update-mood-palroof))
-(define extras-palshaft        (extras-borrow-level #xAB 'extras-palshaft        'extras-palshaft-vis        'eps 'update-mood-palshaft))
-(define extras-ctyport         (extras-borrow-level #xAC 'extras-ctyport         'extras-ctyport-vis         'ecp 'update-mood-ctyport))
 
 (#when PC_PORT
   (cons! *level-load-list* 'test-zone)
   (cons! *level-load-list* 'extras-ctyslumc)
   (cons! *level-load-list* 'extras-ctygenc)
   (cons! *level-load-list* 'extras-forest)
-  (cons! *level-load-list* 'extras-ctyfarma)
-  (cons! *level-load-list* 'extras-fordumpa)
-  (cons! *level-load-list* 'extras-forresca)
-  (cons! *level-load-list* 'pal2boss)
   (cons! *level-load-list* 'extras-palroof)
-  (cons! *level-load-list* 'extras-palshaft)
   (cons! *level-load-list* 'extras-ctyport)
+  (cons! *level-load-list* 'ex-resca)
+  (cons! *level-load-list* 'ex-gena)
+  (cons! *level-load-list* 'fortshaft)
+  (cons! *level-load-list* 'farmshaft)
+  (cons! *level-load-list* 'pal2boss)
   (cons! *level-load-list* 'merc-slumc)
   (cons! *level-load-list* 'merc-genc)
   (cons! *level-load-list* 'merc-markb)

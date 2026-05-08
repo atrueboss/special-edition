@@ -2,7 +2,7 @@
 ;; We use the convention of having a longer DGO name for levels without precomputed visibility.
 
 ;; the actual file name still needs to be 8.3
-("EFA.DGO"
+("EGA.DGO"
  (
-  "extras-ctyfarma.go"
+  "ex-gena.go"
   ))

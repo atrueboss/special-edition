@@ -1,16 +1,16 @@
 {
   // The "in-game" name of the level. Should be lower case, with dashes (GOAL symbol name)
   // the name of this file, and the folder this file is in must have the same name AND be 10 characters of less.
-  "long_name": "ex-farma",
+  "long_name": "ex-resca",
   // The file name, should be upper case and 8 characters or less.
-  "iso_name": "EFA",
+  "iso_name": "EXR",
   // The nickname, should be exactly 3 characters
-  "nickname": "efa", // 3 char name, all lowercase
+  "nickname": "exr", // 3 char name, all lowercase
   // Background mesh file.
   // Must have vertex colors. Use the blender cycles renderer, bake, diffuse, uncheck color,
   // and bake to vertex colors. For now, only the first vertex color group is used, so make sure you
   // only have 1.
-  "gltf_file": "custom_assets/jak2/levels/extras-ctyfarma/extras-ctyfarma.glb",
+  "gltf_file": "custom_assets/jak2/levels/ex-resca/ex-resca.glb",
 
   // automatically set wall vs. ground based on angle. Useful if you don't want to assign this yourself
   "automatic_wall_detection": true,
@@ -32,7 +32,7 @@
   // "movie-pos": ["vector", [4096000.0, -176128.0, 1353973.76, 1.0]]
 
    // The base actor id for your custom level. If you have multiple levels, this should be unique!
-   "base_id": 300000,
+   "base_id": 320000,
 
   // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
   // Removed so that the release builds don't have to double-decompile the game
@@ -51,5 +51,15 @@
                 ],
 
   "actors" : [
+    {
+      "trans": [729.39,   8.25, 215.82],
+      "etype": "fort-entry-gate",
+      "game_task": 0,
+      "quat" : [0.00, 0.00, 0.00, 1.0],
+      "bsphere": [729.39,   8.25, 215.82, 10],
+      "lump": {
+        "name": "fort-entry-gate-69"
+      }
+    }
   ]
 }

@@ -55,7 +55,7 @@
       "etype": "drill-barons-ship",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0.00,   0.73,   0.00,   0.67], // rotation
-      "bsphere": [362.77, 393.58,  72.33, 10], // bounding sphere
+      "bsphere": [362.77, 393.58,  72.33, 500], // bounding sphere
       "lump": {
         "name":"drill-barons-ship-69"
       }
