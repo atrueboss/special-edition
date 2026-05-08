@@ -52,13 +52,16 @@
 
   "actors" : [
     {
-      "trans": [729.39,   8.25, 215.82],
-      "etype": "fort-entry-gate",
-      "game_task": 0,
-      "quat" : [0.00, 0.00, 0.00, 1.0],
-      "bsphere": [729.39,   8.25, 215.82, 10],
-      "lump": {
-        "name": "fort-entry-gate-69"
+  "trans": [729.39, 8.25, 215.82],
+  "etype": "fort-entry-gate",
+  "game_task": 0,
+  "quat": [0.00, 0.00, 0.00, 1.0],
+  "bsphere": [729.39, 8.25, 215.82, 50],
+  "lump": {
+    "name": "fort-entry-gate-69",
+    "distance": ["float", 81920.0]
+    // "on-notice": "'(want-load 'ctysluma 'forresca)",
+    // "on-deactivate": "'(want-load 'ctysluma 'forresca)"
       }
     }
   ]

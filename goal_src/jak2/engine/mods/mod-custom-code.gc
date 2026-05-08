@@ -265,6 +265,29 @@
                                     ))
           )
         )
+      ;; == forresca 
+      (let ((r (region-lookup-by-id 650))) ;; display ctysluma (ex-resca) if you go back
+        (when r 
+          (set! (-> r on-enter) '(begin (want-load 'forresca 'forrescb) (send-event "crimson-guard-hover-41" 'cue-chase))) 
+          (set! (-> r on-exit) '(begin (want-display 'ctysluma 'display))) 
+          )
+        )
+      (let ((r (region-lookup-by-id 214))) ;; deload ctysluma, load forrescb
+        (when r 
+          (set! (-> r on-enter) '(want-load 'forresca 'ctysluma))  
+          )
+        )
+      (let ((r (region-lookup-by-id 202))) ;; load ctysluma if you go back
+        (when r 
+          (set! (-> r on-enter) '(begin (want-load 'forresca 'forrescb)))
+          (set! (-> r on-exit) '(begin (want-load 'forresca 'ctysluma))) 
+          )
+        )
+      (let ((r (region-lookup-by-id 658))) ;; display forrescb
+        (when r 
+          (set! (-> r on-enter) '(begin (want-display 'forrescb) (send-event "battle-55" 'trigger))) 
+          )
+        )
       ;; == mountain 
       (let ((r (region-lookup-by-id 610))) ;; load mincan if you take shortcut
         (when r 
@@ -279,6 +302,33 @@
       )
       
 
+    (defun door-hacks ()
+      (let ((door (entity-by-name "fort-entry-gate-17"))) ;; first door going into fortress - allow early return to fortress
+        (when door (set! (cdr (res-lump-struct door 'on-notice pair)) 
+        '(((task-closed? "fortress-save-friends-introduction") '(forresca)) 
+          ((task-closed? "fortress-dump-resolution") #f) 
+          ((task-closed? "fortress-dump-introduction") '(fordumpa))))
+                   (set! (-> (the (pointer float) (res-lump-struct door 'distance pointer)) 0) (meters 20))
+          )
+        )
+      (let ((door (entity-by-name "fort-entry-gate-7"))) ;; second door going into fortress - don't deload ctysluma as palace entrance uses 
+        (when door                                       ;; it as a borrow level. also don't load forrescb yet as then the door won't open
+          (set! (cdr (res-lump-struct door 'on-deactivate pair))
+            '(begin (want-display 'ctywide #f) (want-load 'forresca 'ctysluma #f) (want-sound 'ctywide1 'forresc1 'forresc2)))
+          )
+        )
+
+    (defun bubble-hacks ()
+      (cond 
+         ((and (= (level-status *level* 'forresca) 'active)                 ;; if in this level 
+               (in-bubble? (meters 752.41) (meters  14.51) (meters 226.62)  ;; location x y z 
+                           (meters 10.0)                                    ;; bubble size
+                 )    
+            )
+          (script-eval '(want-display 'ctywide 'display))
+          )
+        )
+      )
 
     (defun runs-every-frame ()
       (if *show-input-display* 
@@ -293,19 +343,8 @@
       (better-hover-cam)
       (region-hacks)
       (door-hacks)
+      (bubble-hacks)
 
-      ;; Failed attempt at getting past the onin tent problem in ctymarkb
-      ;; (cond 
-      ;;   ( (and (= (level-status *level* 'ctymarkb) 'active)                 ;; if in this level 
-      ;;          (in-bubble? (meters 482.31) (meters  8.40) (meters 473.04)   ;; location x y z 
-      ;;                      (meters 100.0)                                   ;; bubble size
-      ;;          )
-      ;;          (!= (level-status *level* 'extras-ctymarkb) 'active)         ;; if it's not loaded already     
-      ;;     )
-      ;;     (script-eval '(want-load    'ctymarkb 'ctywide 'ctypal 'extras-ctymarkb))
-      ;;     (script-eval '(want-display 'extras-ctymarkb 'display))
-      ;;   )
-      ;; )
       (none)
       )
 

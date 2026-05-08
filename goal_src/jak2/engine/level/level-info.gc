@@ -3742,8 +3742,8 @@
         :vis-nick 'forresca
         :want (new 'static 'inline-array level-buffer-state 6
           (new 'static 'level-buffer-state :name 'forresca :display? 'display :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name 'ex-resca :display? 'display :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name 'forrescb :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name 'ctysluma :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
@@ -6614,8 +6614,9 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160)
+    :borrow-level (new 'static 'array symbol 2 'ex-resca #f)
+    :borrow-display? (new 'static 'array symbol 2 'display #f)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
     :texture-anim-shrub #f
@@ -16117,7 +16118,7 @@
                  :dbname 'ex-resca
                  :taskname 'fortress
                  :packages '()
-                 ;; :memory-mode (load-buffer-mode small-center)
+                 :memory-mode (load-buffer-mode borrow)
                  :music-bank #f
                  :ambient-sounds '()
                  :mood-func 'update-mood-fortress
