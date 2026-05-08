@@ -160,7 +160,7 @@
 
     (defun wider-view () ;; Set camera fov to 94.0 (way better imo)
       (set-setting-by-param *setting-control* 'fov #f (* 182.04445 94) 0) 
-    )
+      )
 
     (define *hover-cam-hint-start* (the-as time-frame -1))
     (defun better-hover-cam ()
@@ -230,36 +230,10 @@
         (('burning-bush-13) ;; city-burning-bush-get-to-6 / burning-bush-markb-2
           (set-vector-meters! (-> arg0 extra trans) 416.67   8.40   422.77)  ;; in tanker attack area
           (set-vector! (-> arg0 quat)  0.00   0.99   0.00   -0.01))
+        )
+        (none)
       )
-      (none)
-    )
 
-    ;; Global scale for fading
-    (define *merc-slumc-rod-scale* 1.0)
-    (define *merc-genc-rod-scale* 1.0)
-    (define *merc-markb-rod-scale* 1.0)
-    (defun merc-spawn-start-arrow ()
-      (cond
-        ((= (level-status *level* 'ctywide) 'active)
-        (when (and (not (task-node-closed? (game-task-node city-burning-bush-slumc-mercenary-discover)))
-                   (task-node-closed? (game-task-node city-protect-water-slums-resolution))
-                   (not (process-by-name "merc-slumc-rod-of-god" *active-pool*))
-                   )
-          (add-icon! *minimap* *dproc* (the-as uint 15) 12345 (new 'static 'vector :x (meters 766.16) :y (meters 8.41) :z (meters -723.03) :w 1.0) 0)
-          (process-spawn-function process-drawable
-            (lambda :behavior process-drawable ()
-              (set! (-> self part) (create-launch-control group-rod-of-god self))
-              (loop
-                (set! (-> *part-id-table* 267 init-specs 4 initial-valuef) (* 24576.0 *merc-slumc-rod-scale*))
-                (set! (-> *part-id-table* 270 init-specs 3 initial-valuef) (* 65536.0 *merc-slumc-rod-scale*))
-                (set! (-> *part-id-table* 268 init-specs 9 initial-valuef) (* 20.0 *merc-slumc-rod-scale*))
-                (spawn (-> self part) (new 'static 'vector :x (meters 766.16) :y (meters 8.41) :z (meters -723.03) :w 1.0))
-                (suspend)
-                )
-              )
-            :to *entity-pool*
-            :name "merc-slumc-rod-of-god"
-            )
     (defun region-hacks ()
       ;; == palcab
       (let ((r (region-lookup-by-id 386))) ;; 1/3 across palcab - stop this region from loading palshaft when going backwards which interrupts pal2boss
@@ -305,84 +279,20 @@
       )
       
 
-    ;; Call every frame from runs-every-frame
-    ;; (defun merc-update-start-arrow ()
-    ;;   (when *target*
-    ;;     (when (and (in-bubble? (meters 766.16) (meters 8.41) (meters -723.03) (meters 50.0))
-    ;;               (task-node-closed? (game-task-node city-protect-water-slums-resolution))
-    ;;               (= (level-status *level* 'ctyslumc) 'active)
-    ;;             )
-    ;;       (kill-by-key (-> *minimap* engine) 12345)
-    ;;       (task-node-close! (game-task-node city-burning-bush-slumc-mercenary-discover))
-    ;;       ;; Fade out rod-of-god via scale
-    ;;       (process-spawn-function process
-    ;;         (lambda :behavior process ()
-    ;;           (while (> *merc-slumc-rod-scale* 0.0)
-    ;;             (+! *merc-slumc-rod-scale* (* -8.0 (seconds-per-frame)))
-    ;;             (suspend)
-    ;;             )
-    ;;           (set! *merc-slumc-rod-scale* 0.0)
-    ;;           (let ((beam-proc (process-by-name "merc-slumc-rod-of-god" *active-pool*)))
-    ;;             (when beam-proc (deactivate beam-proc))
-    ;;             )
-    ;;           (set! *merc-slumc-rod-scale* 1.0)
-    ;;           )
-    ;;         :to *entity-pool*
-    ;;         :name "merc-slumc-fade"
-    ;;         )
-    ;;       )
-    ;;     (when (and (in-bubble? (meters 75.44) (meters 7.99) (meters 329.87) (meters 50.0))
-    ;;               (task-node-closed? (game-task-node atoll-battle-resolution))
-    ;;               (= (level-status *level* 'ctygenc) 'active)
-    ;;             )
-    ;;       (kill-by-key (-> *minimap* engine) 12346)
-    ;;       (task-node-close! (game-task-node city-burning-bush-genc-mercenary-discover))
-    ;;       ;; Fade out rod-of-god via scale
-    ;;       (process-spawn-function process
-    ;;         (lambda :behavior process ()
-    ;;           (while (> *merc-genc-rod-scale* 0.0)
-    ;;             (+! *merc-genc-rod-scale* (* -8.0 (seconds-per-frame)))
-    ;;             (suspend)
-    ;;             )
-    ;;           (set! *merc-genc-rod-scale* 0.0)
-    ;;           (let ((beam-proc (process-by-name "merc-genc-rod-of-god" *active-pool*)))
-    ;;             (when beam-proc (deactivate beam-proc))
-    ;;             )
-    ;;           (set! *merc-slumc-rod-scale* 1.0)
-    ;;           )
-    ;;         :to *entity-pool*
-    ;;         :name "merc-genc-fade"
-    ;;         )
-    ;;       )
-    ;;     (when (and (in-bubble? (meters 416.67) (meters 8.40) (meters 422.77) (meters 50.0))
-    ;;               (task-node-closed? (game-task-node city-intercept-tanker-resolution))
-    ;;               (= (level-status *level* 'ctymarkb) 'active)
-    ;;             )
-    ;;       (kill-by-key (-> *minimap* engine) 12347)
-    ;;       (task-node-close! (game-task-node city-burning-bush-markb-mercenary-discover))
-    ;;       (process-spawn-function process
-    ;;         (lambda :behavior process ()
-    ;;           (while (> *merc-markb-rod-scale* 0.0)
-    ;;             (+! *merc-markb-rod-scale* (* -8.0 (seconds-per-frame)))
-    ;;             (suspend)
-    ;;             )
-    ;;           (set! *merc-markb-rod-scale* 0.0)
-    ;;           (let ((beam-proc (process-by-name "merc-markb-rod-of-god" *active-pool*)))
-    ;;             (when beam-proc (deactivate beam-proc))
-    ;;             )
-    ;;           (set! *merc-markb-rod-scale* 1.0)
-    ;;           )
-    ;;         :to *entity-pool*
-    ;;         :name "merc-markb-fade"
-    ;;         )
-    ;;       )
-    ;;     )
-    ;;   (none)
-    ;;   )
 
     (defun runs-every-frame ()
-      ;; (increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
+      (if *show-input-display* 
+        (input-display-on)
+        (input-display-off)
+        )
+      (when *debug-segment*
+        (orb-placer-maintenance)
+        )
+
+      (begin-game-mod-explanation-hint)
+      (better-hover-cam)
       (region-hacks)
+      (door-hacks)
 
       ;; Failed attempt at getting past the onin tent problem in ctymarkb
       ;; (cond 
@@ -396,65 +306,10 @@
       ;;     (script-eval '(want-display 'extras-ctymarkb 'display))
       ;;   )
       ;; )
-
-      (if *show-input-display* 
-        (input-display-on)
-        (input-display-off)
-        )
-
-      (when *debug-segment*
-        (orb-placer-maintenance)
-        )
-
-      (begin-game-mod-explanation-hint)
-      (better-hover-cam)
-      ;; (merc-spawn-start-arrow)
-      ;; (merc-update-start-arrow)
-
-      (none)
-      )
-
-    (defun runs-on-gem-pickup ()
-      ;; Code here runs on any scout fly pickup
-
       (none)
       )
 
     (defun runs-on-task-close ()
-    
-
-      (none)
-      )
-
-    (defun runs-on-eco-pickup ((eco-type pickup-type) (parent process-tree))
-      (let* ((from-vent? #f))
-        ;; Code here runs as soon as you pickup ANY eco
-
-        (case eco-type
-          (((pickup-type eco-yellow))      
-            ;; Code here runs as soon as you pickup yellow eco
-
-            )
-          (((pickup-type eco-red))      
-            ;; Code here runs as soon as you pickup red eco
-
-            )
-          (((pickup-type eco-blue))      
-            ;; Code here runs as soon as you pickup blue eco
-
-            )
-
-          (((pickup-type eco-green))      
-            ;; Code here runs as soon as you pickup big green eco 
-
-            )
-          )
-        
-        (when from-vent?
-          ;; Code here runs only if the eco was picked up from a vent
-
-          )
-        )
 
       (none)
       )
@@ -487,3 +342,31 @@
 
     #| these are no longer recommended/supported however we include them anyways to not break anyones mods.
     |#
+
+    (defun runs-on-gem-pickup ()
+      ;; Code here runs on any scout fly pickup
+      (none)
+      )
+
+    (defun runs-on-eco-pickup ((eco-type pickup-type) (parent process-tree))
+      (let* ((from-vent? #f))
+        ;; Code here runs as soon as you pickup ANY eco
+        (case eco-type
+          (((pickup-type eco-yellow))      
+            ;; Code here runs as soon as you pickup yellow eco
+            )
+          (((pickup-type eco-red))      
+            ;; Code here runs as soon as you pickup red eco
+            )
+          (((pickup-type eco-blue))      
+            ;; Code here runs as soon as you pickup blue eco
+            )
+          (((pickup-type eco-green))      
+            ;; Code here runs as soon as you pickup big green eco 
+            )
+          )
+        (when from-vent?
+          ;; Code here runs only if the eco was picked up from a vent
+          )
+        )(none)
+      )
