@@ -290,6 +290,15 @@
         )
       )
       
+    (defun custom-region-hacks () ;; not working perfectly, kinda buggy
+      (custom-region 0
+        (meters 756.31) (meters 11.57) (meters 226.99)
+        (meters 10.0)   ;; height
+        (meters 15.0)   ;; width
+        (lambda () (script-eval '(begin (want-load 'forresca)))) ;; on-enter
+        (lambda () (script-eval '(want-load 'forresca #f)))      ;; on-exit
+        )
+      )
 
     (defun door-hacks ()
     ;; == fortress
@@ -364,6 +373,7 @@
       (begin-game-mod-explanation-hint)
       (better-hover-cam)
       (vanilla-region-hacks)
+      ;; (custom-region-hacks)
       (door-hacks)
       (bubble-hacks)
 
