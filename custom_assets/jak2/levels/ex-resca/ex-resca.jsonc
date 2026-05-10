@@ -38,8 +38,8 @@
   // Removed so that the release builds don't have to double-decompile the game
   //"art_groups": ["prsn-torture-ag"],
   "art_groups":   [
-                  "warp-gate-ag",
-                  "forest-part-ag"
+                  "com-airlock-outer-ag"
+                  // "com-airlock-inner-ag"
                   ],
 
    // Any textures you want to include in your custom level.
@@ -52,6 +52,17 @@
 
   "actors" : [
     {
+  "trans": [729.62,  26.1, 208.75],
+  "etype": "skill",
+  "game_task": 0,
+  "quat": [0.00, 0.00, 0.00, 1.0],
+  "bsphere": [729.62,  26.1, 208.75, 10],
+  "lump": {
+    "name": "skill-96"
+      }
+    },
+    {
+  "aid": 100000,
   "trans": [729.39, 8.25, 215.82],
   "etype": "fort-entry-gate",
   "game_task": 0,
@@ -59,9 +70,23 @@
   "bsphere": [729.39, 8.25, 215.82, 50],
   "lump": {
     "name": "fort-entry-gate-69",
-    "distance": ["float", 81920.0]
-    // "on-notice": "'(want-load 'ctysluma 'forresca)",
-    // "on-deactivate": "'(want-load 'ctysluma 'forresca)"
+    "distance": ["meters", 2.5],
+    "idle-distance": ["meters", 3.5]
+    // "next-actor": ["uint32", 100001]
+      }
+    },
+    {
+  "aid": 100001,
+  "trans": [730.20,   8.25, 198.55],
+  "etype": "com-airlock-outer",
+  "game_task": 0,
+  "quat": [0.00, 0.00, 0.00, 1.0],
+  "bsphere": [730.20,   8.25, 198.50, 10],
+  "lump": {
+    "name": "com-airlock-outer-69",
+    "distance": ["meters", 12.0],
+    "idle-distance": ["meters", 15.0],
+    "next-actor": ["uint32", 100002]
       }
     }
   ]

@@ -4,5 +4,9 @@
 ;; the actual file name still needs to be 8.3
 ("FOS.DGO"
  (
+  "com-elevator.o"
+  "com-elevator-ag.go"
+  "com-airlock-outer-ag.go"
+  "com-airlock-inner-ag.go"
   "fortshaft.go"
   ))

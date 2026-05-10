@@ -3719,7 +3719,6 @@
     :dbname 'forresca
     :taskname 'fortress
     :packages '(hoverp guardp forresca)
-    ;; :memory-mode (load-buffer-mode small-center)
     :music-bank 'fortress
     :ambient-sounds '()
     :mood-func 'update-mood-forresca
@@ -3742,7 +3741,7 @@
         :vis-nick 'forresca
         :want (new 'static 'inline-array level-buffer-state 6
           (new 'static 'level-buffer-state :name 'forresca :display? 'display :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name 'ctysluma :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name 'ex-resca :display? 'display :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
@@ -3946,9 +3945,9 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-size (new 'static 'array uint16 2 160 160)
-    :borrow-level (new 'static 'array symbol 2 #f 'ex-resca)
-    :borrow-display? (new 'static 'array symbol 2 #f 'display)
+    ;; :borrow-size (new 'static 'array uint16 2 160 320)
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris '*fortress-pris-texture-anim-array*
@@ -6614,9 +6613,9 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-size (new 'static 'array uint16 2 160 160)
-    :borrow-level (new 'static 'array symbol 2 'ex-resca #f)
-    :borrow-display? (new 'static 'array symbol 2 'display #f)
+    ;; :borrow-size (new 'static 'array uint16 2 160 320)
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
     :texture-anim-shrub #f
@@ -16118,7 +16117,7 @@
                  :dbname 'ex-resca
                  :taskname 'fortress
                  :packages '()
-                 :memory-mode (load-buffer-mode borrow)
+                 :memory-mode (load-buffer-mode small-center)
                  :music-bank #f
                  :ambient-sounds '()
                  :mood-func 'update-mood-fortress
@@ -16222,15 +16221,60 @@
                  :dbname 'fortshaft
                  :taskname 'palace
                  :packages '()
-                 ;; :memory-mode (load-buffer-mode small-center)
                  :music-bank #f
                  :ambient-sounds '()
                  :mood-func 'update-mood-fortress
                  :mood-init 'init-mood-forresca
-                 :ocean #f
-                 :sky #f
+                 :ocean '*ocean-map-village*
+                 :sky #t
                  :use-camera-other #t
-                 :continues '()
+                 :continues '((new 'static 'continue-point
+                    :name "fortshaft-bottom"
+                    :level 'fortshaft
+                    :trans (new 'static 'vector :x (meters 729.98) :y (meters 8.26) :z (meters 170.23) :w 1.0)
+                    :quat (new 'static 'vector :y -0.5685 :w 0.8226)
+                    :camera-trans (new 'static 'vector :x 3049807.8 :y 54745.496 :z 923088.06 :w 1.0)
+                    :camera-rot (new 'static 'inline-array vector3s 3
+                      (new 'static 'vector3s :data (new 'static 'array float 3 0.0353 0.0 0.9993))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.1203 0.9927 0.0042))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.992 -0.1204 0.0351))
+                      )
+                    :on-goto #f
+                    :vis-nick 'fortshaft
+                    :want (new 'static 'inline-array level-buffer-state 6
+                      (new 'static 'level-buffer-state :name 'fortshaft :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name 'ex-resca :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name 'palshaft :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      )
+                    :want-sound (new 'static 'array symbol 3 'ctywide1 'ctywide2 'palcab1)
+                    )
+                  (new 'static 'continue-point
+                    :name "fortshaft-top"
+                    :level 'fortshaft
+                    :trans (new 'static 'vector :x (meters 782.34) :y (meters 454.40) :z (meters 121.15) :w 1.0)
+                    :quat (new 'static 'vector :y 0.4380 :w -0.8989)
+                    :camera-trans (new 'static 'vector :x (meters 792.3282) :y (meters 459.4106) :z (meters 114.5609) :w 1.0)
+                    :camera-rot (new 'static 'inline-array vector3s 3
+                      (new 'static 'vector3s :data (new 'static 'array float 3 0.5519 -0.0000 0.8338))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.1008 0.9926 0.0667))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.8277 -0.1209 0.5478))
+                      )
+                    :on-goto #f
+                    :vis-nick 'fortshaft
+                    :want (new 'static 'inline-array level-buffer-state 6
+                      (new 'static 'level-buffer-state :name 'fortshaft :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name 'palshaft :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      )
+                    :want-sound (new 'static 'array symbol 3 'ctywide1 'ctywide2 'palcab1)
+                    )
+                  )
                  :tasks '()
                  :priority 100
                  :load-commands '()

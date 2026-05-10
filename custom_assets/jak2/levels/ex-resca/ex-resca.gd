@@ -4,5 +4,7 @@
 ;; the actual file name still needs to be 8.3
 ("EXR.DGO"
  (
+  "com-airlock-outer-ag.go"
+  ;; "com-airlock-inner-ag.go"
   "ex-resca.go"
   ))

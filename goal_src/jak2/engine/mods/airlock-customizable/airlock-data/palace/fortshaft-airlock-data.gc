@@ -1,0 +1,16 @@
+;;-*-Lisp-*-
+(in-package goal)
+
+(define *fortshaft-airlock-data* (new 'static 'boxed-array :type airlock-data
+              (static-airlock-data 
+                :airlock-name "com-airlock-inner-69"
+                :on-notice '(when (task-closed? "fortress-save-friends-resolution") '(ex-resca))
+                :on-activate '(want-load 'ex-resca 'fortshaft)
+                :on-enter '(want-display 'ex-resca 'display)
+                :on-exit '(want-display 'ex-resca #f)
+                :on-cross #f
+                :on-inside #f
+                :on-deactivate #f
+                )
+              )
+  )

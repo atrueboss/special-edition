@@ -38,8 +38,9 @@
   // Removed so that the release builds don't have to double-decompile the game
   //"art_groups": ["prsn-torture-ag"],
   "art_groups":   [
-                  "warp-gate-ag",
-                  "forest-part-ag"
+                  // "com-airlock-outer-ag"
+                  "com-airlock-inner-ag",
+                  "com-elevator-ag"
                   ],
 
    // Any textures you want to include in your custom level.
@@ -51,15 +52,39 @@
                 ],
 
   "actors" : [
-    // {
-    //   "trans": [729.39,   8.25, 215.82],
-    //   "etype": "fort-entry-gate",
-    //   "game_task": 0,
-    //   "quat" : [0.00, 0.00, 0.00, 1.0],
-    //   "bsphere": [729.39,   8.25, 215.82, 10],
-    //   "lump": {
-    //     "name": "fort-entry-gate-70"
-    //   }
-    // }
+    {
+  "aid": 100002,
+  "trans": [730.20,   8.25, 194.50],
+  "etype": "com-airlock-inner",
+  "game_task": 0,
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [730.20,   8.25, 194.50, 10],
+  "lump": {
+    "name": "com-airlock-inner-69",
+    "distance": ["meters", 12.0],
+    "idle-distance": ["meters", 15.0],
+    "next-actor": ["uint32", 100001]
+      }
+    },
+    {
+  "trans": [783.86,   9.28, 120.50],
+  "etype": "com-elevator",
+  "game_task": 0,
+  "quat": [0.00,   0.90,   0.00,   0.43],
+  "bsphere": [783.86,   9.28, 120.50, 10],
+  "lump": {
+    "name": "com-elevator-69",
+    "elevator-move-rate": ["meters", 60.0],
+    "elevator-xz-threshold": ["meters", 80.0],
+    "elevator-y-threshold": ["meters", 40.0],
+    "elevator-flags": ["uint32", 32],
+    "elevator-start-pos": ["float", 1.0],
+    "vis-dist": ["meters", 1000.0],
+    "path": ["vector",
+      [3210223.36, 38010.88, 493568.0, 1.0],
+      [3210223.36, 1862246.4, 493568.0, 1.0]
+            ]
+      }
+    }
   ]
 }
