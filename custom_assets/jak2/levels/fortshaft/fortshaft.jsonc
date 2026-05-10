@@ -73,7 +73,7 @@
   "quat": [0.00,   0.90,   0.00,   0.43],
   "bsphere": [783.86,   9.28, 120.50, 10],
   "lump": {
-    "name": "com-elevator-69",
+    "name": "com-elevator-69", // added elevator
     "elevator-move-rate": ["meters", 60.0],
     "elevator-xz-threshold": ["meters", 80.0],
     "elevator-y-threshold": ["meters", 40.0],
