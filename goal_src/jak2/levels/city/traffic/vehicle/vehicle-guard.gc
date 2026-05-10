@@ -1170,6 +1170,14 @@
         (set! (-> this turret owner-handle) (the-as handle #f))
         )
       )
+    (when (logtest? (-> this flags) (rigid-body-object-flag player-driving))
+      ;; Limit thrust above 30 meters to prevent rocketing into sky
+      (if (> (-> this root trans y) (meters 30))
+          (and (format #t "Lowering bike thrust by 40% to stop rocketing~%")
+              (set! (-> this force-scale) 0.6))
+          (set! (-> this force-scale) 1.0)
+        )
+      )
     ((method-of-type vehicle vehicle-method-94) this)
     0
     (none)
