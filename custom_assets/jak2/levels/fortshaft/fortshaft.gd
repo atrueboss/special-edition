@@ -5,6 +5,7 @@
 ("FOS.DGO"
  (
   "com-elevator.o"
+  "palshaft-part.o"
   "com-elevator-ag.go"
   "com-airlock-outer-ag.go"
   "com-airlock-inner-ag.go"

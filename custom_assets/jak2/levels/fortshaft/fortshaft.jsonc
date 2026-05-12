@@ -38,8 +38,9 @@
   // Removed so that the release builds don't have to double-decompile the game
   //"art_groups": ["prsn-torture-ag"],
   "art_groups":   [
-                  // "com-airlock-outer-ag"
+                  "com-airlock-outer-ag",
                   "com-airlock-inner-ag",
+                  // "palshaft-part-ag",
                   "com-elevator-ag"
                   ],
 
@@ -67,23 +68,748 @@
       }
     },
     {
-  "trans": [783.86,   9.28, 120.50],
+  "trans": [794.11,   9.28, 113.29],
   "etype": "com-elevator",
   "game_task": 0,
-  "quat": [0.00,   0.90,   0.00,   0.43],
-  "bsphere": [783.86,   9.28, 120.50, 10],
+  "quat": [0.00,  0.453,   0.00,  -0.891],
+  "bsphere": [794.11,   9.28, 113.29, 10],
   "lump": {
     "name": "com-elevator-69", // added elevator
     "elevator-move-rate": ["meters", 60.0],
     "elevator-xz-threshold": ["meters", 80.0],
     "elevator-y-threshold": ["meters", 40.0],
-    "elevator-flags": ["uint32", 32],
-    "elevator-start-pos": ["float", 1.0],
+    "elevator-flags": ["uint32", 49],
+    "elevator-start-pos": ["float", 0.0],
     "vis-dist": ["meters", 1000.0],
+    "on-activate": "(#f)", // see hacks in mod-custom-code.gc
+    "on-deactivate": "(#f)", // see hacks in mod-custom-code.gc
     "path": ["vector",
-      [3210223.36, 38010.88, 493568.0, 1.0],
-      [3210223.36, 1862246.4, 493568.0, 1.0]
+      [3252674.56, 38010.88, 464117.76, 1.0],
+      [3252674.56, 1863843.84, 464117.76, 1.0]
             ]
+      }
+    },
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////// SHAFT LIGHTS /////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+  "trans": [785.889,  26.4938, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889,  26.4938, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-1",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351,  26.4938, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351,  26.4938, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-2",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887,  26.4938, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887,  26.4938, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-3",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635,  26.4938, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635,  26.4938, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-4",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889,  47.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889,  47.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-5",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 47.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 47.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-6",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 47.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 47.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-7",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 47.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 47.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-8",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 71.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 71.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-9",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 71.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 71.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-10",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 71.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 71.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-11",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 71.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 71.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-12",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 95.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 95.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-13",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 95.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 95.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-14",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 95.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 95.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-15",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 95.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 95.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-16",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 119.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 119.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-17",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 119.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 119.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-18",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 119.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 119.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-19",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 119.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 119.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-20",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 143.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 143.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-21",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 143.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 143.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-22",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 143.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 143.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-23",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 143.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 143.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-24",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 167.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 167.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-25",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 167.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 167.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-26",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 167.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 167.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-27",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 167.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 167.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-28",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 191.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 191.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-29",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 191.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 191.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-30",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 191.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 191.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-31",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 191.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 191.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-32",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 215.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 215.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-33",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 215.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 215.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-34",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 215.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 215.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-35",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 215.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 215.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-36",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 239.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 239.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-37",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 239.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 239.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-38",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 239.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 239.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-39",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 239.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 239.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-40",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 263.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 263.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-41",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 263.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 263.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-42",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 263.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 263.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-43",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 263.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 263.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-44",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 287.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 287.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-45",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 287.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 287.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-46",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 287.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 287.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-47",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 287.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 287.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-48",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 311.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 311.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-49",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 311.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 311.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-50",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 311.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 311.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-51",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 311.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 311.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-52",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 335.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 335.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-53",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 335.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 335.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-54",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 335.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 335.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-55",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 335.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 335.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-56",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 359.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 359.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-57",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 359.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 359.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-58",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 359.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 359.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-59",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 359.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 359.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-60",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 383.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 383.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-61",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 383.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 383.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-62",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 383.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 383.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-63",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 383.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 383.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-64",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 407.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 407.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-65",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 407.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 407.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-66",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 407.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 407.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-67",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 407.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 407.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-68",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [785.889, 431.4707, 111.966],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [785.889, 431.4707, 111.966, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-69",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [794.351, 431.4707, 113.297],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [794.351, 431.4707, 113.297, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-70",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [792.887, 431.4707, 121.828],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [792.887, 431.4707, 121.828, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-71",
+    "art-name": "group-palshaft-blue-strip-lights"
+      }
+    },
+    {
+  "trans": [784.635, 431.4707, 120.486],
+  "etype": "palshaft-part",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [784.635, 431.4707, 120.486, 10],
+  "lump": {
+    "name": "fortshaft-blue-light-72",
+    "art-name": "group-palshaft-blue-strip-lights"
       }
     }
   ]
