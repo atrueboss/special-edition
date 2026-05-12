@@ -1794,6 +1794,8 @@
                   (damage (cond
                             ((= attack-mode 'eco-blue) 1)
                             ((or (= attack-mode 'eco-dark) (= attack-mode 'explode)) 30)
+                            ((= attack-mode 'bomb) 30)
+                            ((= attack-mode 'ice) 30)
                             (else 2)
                             ))
                   )
