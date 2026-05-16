@@ -48,6 +48,8 @@
       (("com-airlock-inner-26" "com-airlock-inner-25" "com-airlock-inner-23" "com-airlock-inner-36" "com-airlock-inner-37" "com-airlock-inner-22") *palshaft-airlock-data*)
       (("pal-throne-door-3") *throne-airlock-data*)
       (("com-airlock-inner-69") *fortshaft-airlock-data*) ;; custom entry - from fortshaft to fortress
+      (("com-airlock-inner-70") *fortshaft-airlock-data*) ;; custom entry - from fortshaft to pal2cab
+      (("com-airlock-outer-70") *pal2cab-airlock-data*) ;; custom entry - from pal2cab to fortshaft
       ;; under
       (("com-airlock-inner-43" "com-airlock-inner-44") *under-airlock-data*)
       (("com-airlock-inner-41" "com-airlock-inner-42" "under-door-2" "under-door-4") *underb-airlock-data*)

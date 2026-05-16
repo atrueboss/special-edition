@@ -68,6 +68,21 @@
       }
     },
     {
+  "aid": 100003,
+  "trans": [776.358,   454.431, 125.202],
+  "etype": "com-airlock-inner",
+  "game_task": 0,
+  "quat": [0.00, 0.883291, 0.00, 0.468826],
+  "bsphere": [776.358,   454.431, 125.202, 10],
+  "lump": {
+    "name": "com-airlock-inner-70",
+    "distance": ["meters", 20.0],
+    "idle-distance": ["meters", 25.0],
+    "height": ["vector", [122880.0, 122880.0, 0.0, 0.0]],
+    "next-actor": ["uint32", 100004]
+      }
+    },
+    {
   "trans": [794.11,   9.28, 113.29],
   "etype": "com-elevator",
   "game_task": 0,

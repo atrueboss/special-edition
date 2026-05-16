@@ -1,0 +1,16 @@
+;;-*-Lisp-*-
+(in-package goal)
+
+(define *pal2cab-airlock-data* (new 'static 'boxed-array :type airlock-data
+              (static-airlock-data 
+                :airlock-name "com-airlock-outer-70"
+                :on-notice '(when (task-closed? "fortress-save-friends-resolution") '(fortshaft))
+                :on-activate '(want-load 'pal2cab 'palroof 'fortshaft)
+                :on-enter '(want-display 'fortshaft 'display)
+                :on-exit '(want-display 'fortshaft #f)
+                :on-cross #f
+                :on-inside #f
+                :on-deactivate #f
+                )
+              )
+  )

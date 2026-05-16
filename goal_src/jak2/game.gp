@@ -335,6 +335,10 @@
 (goal-src "levels/pal2boss/pal2boss.gc" "process-focusable")
 (custom-level-cgo "P2B.DGO" "pal2boss/pal2boss.gd")
 
+(build-custom-level "pal2cab")
+(goal-src "levels/pal2cab/pal2cab.gc" "process-focusable")
+(custom-level-cgo "P2C.DGO" "pal2cab/pal2cab.gd")
+
 (build-custom-level "extras-palroof")
 (goal-src "levels/extras-palroof/extras-palroof.gc" "process-focusable")
 (custom-level-cgo "EPR.DGO" "extras-palroof/extras-palroof.gd")

@@ -16361,6 +16361,86 @@
                  )
         )
 
+(define pal2cab (new 'static 'level-load-info
+                 :index #xAD
+                 :task-level #xb
+                 :name 'pal2cab
+                 :visname 'pal2cab-vis
+                 :nickname 'p2c
+                 :dbname 'pal2cab
+                 :taskname 'palace
+                 :packages '(palcab)
+                 :memory-mode (load-buffer-mode small-center)
+                 :music-bank 'palcab
+                 :ambient-sounds '()
+                 :mood-func 'update-mood-palcab
+                 :mood-init 'init-mood-palcab
+                 :ocean '*ocean-map-city*
+                 :sky #t
+                 :use-camera-other #f
+                 :part-engine-max #x100
+                 :continues '((new 'static 'continue-point
+                    :name "pal2cab-start"
+                    :level 'pal2cab
+                    :trans (new 'static 'vector :x (meters 763.648) :y (meters 454.269) :z (meters 132.979) :w 1.0)
+                    :quat (new 'static 'vector :y 0.4380 :w -0.8989)
+                    :camera-trans (new 'static 'vector :x (meters 792.3282) :y (meters 459.4106) :z (meters 114.5609) :w 1.0)
+                    :camera-rot (new 'static 'inline-array vector3s 3
+                      (new 'static 'vector3s :data (new 'static 'array float 3 0.5519 -0.0000 0.8338))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.1008 0.9926 0.0667))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.8277 -0.1209 0.5478))
+                      )
+                    :on-goto #f
+                    :vis-nick 'pal2cab
+                    :want (new 'static 'inline-array level-buffer-state 6
+                      (new 'static 'level-buffer-state :name 'pal2cab :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name 'palroof :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name 'fortshaft :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      )
+                    :want-sound (new 'static 'array symbol 3 'ctywide1 'ctywide2 'palcab1)
+                    )
+                  )
+                 :tasks '()
+                 :priority 100
+                 :load-commands '()
+                 :alt-load-commands '()
+                 :bsp-mask #xffffffffffffffff
+                 :buttom-height (meters -100)
+                 :run-packages '("common")
+                 :wait-for-load #t
+                 :login-func #f
+                 :activate-func #f
+                 :deactivate-func #f
+                 :kill-func #f
+                 :borrow-level (new 'static 'array symbol 2 #f #f)
+                 :borrow-display? (new 'static 'array symbol 2 #f #f)
+                 :base-task-mask (task-mask task0)
+                 :texture-anim-tfrag #f
+                 :texture-anim-pris #f
+                 :texture-anim-shrub #f
+                 :texture-anim-alpha #f
+                 :texture-anim-water #f
+                 :texture-anim-twarp #f
+                 :texture-anim-pris2 #f
+                 :texture-anim-sprite #f
+                 :texture-anim-map #f
+                 :texture-anim-sky #f
+                 :draw-priority 10.0
+                 :fog-height 327680.0
+                 :bigmap-id (bigmap-id city)
+                 :ocean-near-translucent? #t
+                 :ocean-far? #t
+                 :mood-range (new 'static 'mood-range :data (new 'static 'array float 4 0.0 1.0 0.0 1.0))
+                 :max-rain 1.0
+                 :fog-mult 2.0
+                 :ocean-alpha 1.0
+                 :extra-sound-bank #f
+                 )
+        )
+
 (define pal2boss (new 'static 'level-load-info
                  :index #xA9
                  :task-level #xb
@@ -16494,6 +16574,7 @@
   (cons! *level-load-list* 'fortshaft)
   (cons! *level-load-list* 'farmshaft)
   (cons! *level-load-list* 'pal2boss)
+  (cons! *level-load-list* 'pal2cab)
   (cons! *level-load-list* 'merc-slumc)
   (cons! *level-load-list* 'merc-genc)
   (cons! *level-load-list* 'merc-markb)

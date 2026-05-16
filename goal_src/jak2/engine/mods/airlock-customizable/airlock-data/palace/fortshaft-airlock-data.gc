@@ -12,5 +12,15 @@
                 :on-inside #f
                 :on-deactivate #f
                 )
+              (static-airlock-data 
+                :airlock-name "com-airlock-inner-70"
+                :on-notice '(when (task-closed? "fortress-save-friends-resolution") '(pal2cab))
+                :on-activate '(want-load 'pal2cab 'palroof 'fortshaft)
+                :on-enter '(begin (want-display 'pal2cab 'display) (want-display 'palroof 'display))
+                :on-exit '(begin (want-display 'pal2cab #f) (want-display 'palroof #f))
+                :on-cross '(want-vis 'palroof)
+                :on-inside #f
+                :on-deactivate #f
+                )
               )
   )

@@ -473,6 +473,7 @@
   "palshaft-airlock-data.o"
   "throne-airlock-data.o"
   "fortshaft-airlock-data.o"
+  "pal2cab-airlock-data.o"
   ;; under
   "under-airlock-data.o"
   "underb-airlock-data.o"
