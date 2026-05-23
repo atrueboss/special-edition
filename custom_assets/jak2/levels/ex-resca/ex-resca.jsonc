@@ -88,6 +88,26 @@
     "idle-distance": ["meters", 15.0],
     "next-actor": ["uint32", 100002]
       }
+    },
+    {
+  "trans": [729.482,  17.9833, 217.899],
+  "etype": "part-spawner",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [729.482,  17.9833, 217.899, 10],
+  "lump": {
+    "name": "ex-resca-red-glows",
+    "art-name": "group-fordumpc-red-glows"
+      }
+    },
+    {
+  "trans": [729.546,  17.3951, 207.428],
+  "etype": "part-spawner",
+  "quat": [0.00, 1.0, 0.00, 0.00],
+  "bsphere": [729.546,  17.3951, 207.428, 10],
+  "lump": {
+    "name": "ex-resca-overhead-lights",
+    "art-name": "group-fordumpc-overhead-lights"
+      }
     }
   ]
 }

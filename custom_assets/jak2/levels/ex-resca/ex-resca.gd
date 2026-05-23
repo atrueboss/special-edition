@@ -6,5 +6,6 @@
  (
   "com-airlock-outer-ag.go"
   ;; "com-airlock-inner-ag.go"
+  "fordumpc-part.o"
   "ex-resca.go"
   ))
