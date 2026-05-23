@@ -1292,3 +1292,6 @@
 (defconstant group-ctygenc-sign-4x8 (-> *part-group-id-table* 854))
 ;; custom entries 
 (defconstant group-mercenary-clock-spark (-> *part-group-id-table* 1295))
+(defconstant group-fortshaft-console-1 (-> *part-group-id-table* 1296))
+(defconstant group-fortshaft-console-2 (-> *part-group-id-table* 1297))
+(defconstant group-fortshaft-console-3 (-> *part-group-id-table* 1298))
