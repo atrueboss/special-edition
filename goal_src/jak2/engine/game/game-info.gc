@@ -370,7 +370,7 @@
           "demo-start"
           )
          (*debug-segment*
-           "game-start"
+           "fortshaft-top"
            )
          (else
            "title-start"
