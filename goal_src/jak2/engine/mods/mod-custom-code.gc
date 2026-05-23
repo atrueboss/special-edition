@@ -257,12 +257,19 @@
                                     ))
           )
         )
+      ;; == palroof
       (let ((r (region-lookup-by-id 623))) ;; before palboss - don't load palboss if he's dead already 
         (when r
           (set! (-> r on-enter) '(if (task-closed? "palace-boss-resolution")
                                     (begin (want-sound 'ctywide1 'palcab1 'palcab2))
                                     (begin (want-sound 'palroof1 'palroof2 'palroof3) (want-load 'palroof 'palcab 'palboss))
                                     ))
+          )
+        )
+      (let ((r (region-lookup-by-id 663))) ;; after 1st phase palboss, load/deload palcab/pal2cab 
+        (when r
+          (set! (-> r on-enter) '(begin (want-load 'palroof 'palboss 'pal2cab) (send-event "squid-2" 'plane 0)))
+          (set! (-> r on-exit) '(want-load 'palroof 'palboss 'palcab))
           )
         )
       ;; == forresca 
@@ -357,6 +364,20 @@
                  )    
             )
           (script-eval '(want-display 'ex-resca 'display))
+          )
+        )
+      ;; == palroof 
+      (cond ;; display palcab/pal2cab on palroof
+         ((and (or (= (level-status *level* 'palcab) 'loaded)               ;; if in this level 
+                   (= (level-status *level* 'pal2cab) 'loaded))             
+               (in-bubble? (meters 263.35) (meters 409.43) (meters 526.81)  ;; location x y z 
+                           (meters 80.0)                                    ;; bubble size
+                 )    
+            )
+          (if (= (level-status *level* 'palcab) 'loaded)
+              (script-eval '(want-display 'palcab 'display))
+              (script-eval '(want-display 'pal2cab 'display))
+            )
           )
         )
       )
