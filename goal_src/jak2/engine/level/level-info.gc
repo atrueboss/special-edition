@@ -16120,8 +16120,8 @@
                  :memory-mode (load-buffer-mode small-center)
                  :music-bank #f
                  :ambient-sounds '()
-                 :mood-func 'update-mood-fortress
-                 :mood-init 'init-mood-forresca
+                 :mood-func 'update-mood-fortshaft
+                 :mood-init #f ;; 'init-mood-forresca
                  :ocean #f
                  :sky #f
                  :use-camera-other #t
@@ -16223,9 +16223,9 @@
                  :packages '()
                  :music-bank #f
                  :ambient-sounds '()
-                 :mood-func 'update-mood-fortress
-                 :mood-init 'init-mood-forresca
-                 :ocean '*ocean-map-village*
+                 :mood-func 'update-mood-fortshaft
+                 :mood-init #f
+                 :ocean #f
                  :sky #t
                  :use-camera-other #t
                  :continues '((new 'static 'continue-point

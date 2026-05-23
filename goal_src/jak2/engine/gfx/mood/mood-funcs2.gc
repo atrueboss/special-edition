@@ -2870,3 +2870,25 @@
   0
   (none)
   )
+
+(defbehavior update-mood-fortshaft time-of-day-proc ((arg0 mood-context))
+  (update-mood-interior arg0)
+  (cond
+    ((< (the-as uint 8) (the-as uint (-> *time-of-day-context* mode)))
+     (palette-select-special arg0)
+     )
+    (else
+      ;; base lighting always on
+      (set! (-> arg0 times 0 w) 1.0)
+      (set! (-> arg0 times 1 w) 1.0)
+      ;; wall lights - each slot reads from a light entity in the level
+      ;; arg3=1.0 base, arg4=0.0 no flicker, arg5=10.0 smooth fade
+      (update-mood-light arg0 2 0 1.0 0.0 10.0 0.0 0.0)  ;; light slot 2 from light-state 0
+      (update-mood-light arg0 3 1 1.0 0.0 10.0 0.0 0.0)  ;; light slot 3 from light-state 1
+      (update-mood-light arg0 4 2 1.0 0.0 10.0 0.0 0.0)  ;; light slot 4 from light-state 2
+      (update-mood-light arg0 5 3 1.0 0.0 10.0 0.0 0.0)  ;; light slot 5 from light-state 3
+      )
+    )
+  0
+  (none)
+  )
