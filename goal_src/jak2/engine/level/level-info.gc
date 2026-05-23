@@ -16231,20 +16231,20 @@
                  :continues '((new 'static 'continue-point
                     :name "fortshaft-bottom"
                     :level 'fortshaft
-                    :trans (new 'static 'vector :x (meters 729.98) :y (meters 8.26) :z (meters 170.23) :w 1.0)
-                    :quat (new 'static 'vector :y -0.5685 :w 0.8226)
-                    :camera-trans (new 'static 'vector :x 3049807.8 :y 54745.496 :z 923088.06 :w 1.0)
+                    :trans (new 'static 'vector :x (meters 730.0524) :y (meters 8.2501) :z (meters 174.2705) :w 1.0)
+                    :quat (new 'static 'vector :y 0.9996 :w -0.0255)
+                    :camera-trans (new 'static 'vector :x (meters 729.7174) :y (meters 12.8451) :z (meters 184.6865) :w 1.0)
                     :camera-rot (new 'static 'inline-array vector3s 3
-                      (new 'static 'vector3s :data (new 'static 'array float 3 0.0353 0.0 0.9993))
-                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.1203 0.9927 0.0042))
-                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.992 -0.1204 0.0351))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.9995 -0.0000 -0.0310))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 0.0036 0.9931 -0.1166))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 0.0308 -0.1167 -0.9926))
                       )
                     :on-goto #f
                     :vis-nick 'fortshaft
                     :want (new 'static 'inline-array level-buffer-state 6
                       (new 'static 'level-buffer-state :name 'fortshaft :display? 'display :force-vis? #f :force-inside? #f)
                       (new 'static 'level-buffer-state :name 'ex-resca :display? #f :force-vis? #f :force-inside? #f)
-                      (new 'static 'level-buffer-state :name 'palshaft :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
                       (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
                       (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
                       (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
@@ -16266,7 +16266,7 @@
                     :vis-nick 'fortshaft
                     :want (new 'static 'inline-array level-buffer-state 6
                       (new 'static 'level-buffer-state :name 'fortshaft :display? 'display :force-vis? #f :force-inside? #f)
-                      (new 'static 'level-buffer-state :name 'palshaft :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
                       (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
                       (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
                       (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
