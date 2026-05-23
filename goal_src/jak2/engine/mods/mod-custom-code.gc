@@ -361,6 +361,39 @@
         )
       )
 
+    (defun custom-music-volume-manager ()
+    "Run on every frame in mod-custom-code to constantly update music volume."
+      (main-music-volume (the int (* 100.0 (-> *setting-control* user-current music-volume)))) 
+      )
+
+    (defun zero-volume? ()
+    "Returns true if the volume of main music should be set to 0. This is a hack."
+      (or (not (= *master-mode* 'game))
+          (= (-> (level-get-target-inside *level*) name) 'title)
+        )
+      )
+
+    (define *current-playing-custom-music-str* (new 'global 'string 2048 (the-as string #f)))
+    (defun custom-music-player ()
+      (cond
+        ;; FORTSHAFT WIND AMBIENCE
+        ((= (level-status *level* 'fortshaft) 'active)
+        (when (not (string= *current-playing-custom-music-str* "fortshaft-amb.wav"))
+          (stop-main-music)
+          (play-main-music "fortshaft-amb.wav" (the int (* 50.0 (-> *setting-control* user-current music-volume))))
+          (format (clear *current-playing-custom-music-str*) "fortshaft-amb.wav")
+          )
+        )
+        ;; NOT IN ANY CUSTOM MUSIC LEVEL - stop if we were playing something
+        (else
+          (when (> (length *current-playing-custom-music-str*) 0)
+            (stop-main-music)
+            (format (clear *current-playing-custom-music-str*) "")
+            )
+          )
+        )
+      )
+
     (defun runs-every-frame ()
       (if *show-input-display* 
         (input-display-on)
@@ -376,7 +409,8 @@
       ;; (custom-region-hacks)
       (door-hacks)
       (bubble-hacks)
-
+      (custom-music-volume-manager)
+      (custom-music-player)
       (none)
       )
 
