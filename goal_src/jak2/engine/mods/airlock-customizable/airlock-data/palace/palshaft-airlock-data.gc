@@ -24,10 +24,10 @@
                 )
               (static-airlock-data 
                 :airlock-name "com-airlock-inner-25"
-                :on-notice '(when #t '(palcab palroof))
+                :on-notice '(when #t '(pal2cab palroof))
                 :on-activate #f
-                :on-enter '(begin (want-display 'palroof 'display) (want-display 'palcab 'display) (want-sound 'ctywide1 'palcab1 'palcab2))
-                :on-exit '(begin (want-display 'palroof #f) (want-display 'palcab #f) (want-sound 'ctywide1 'palcab1 'palcab2))
+                :on-enter '(begin (want-display 'palroof 'display) (want-display 'pal2cab 'display) (want-sound 'ctywide1 'palcab1 'palcab2))
+                :on-exit '(begin (want-display 'palroof #f) (want-display 'pal2cab #f) (want-sound 'ctywide1 'palcab1 'palcab2))
                 :on-cross '(want-vis 'palroof)
                 :on-inside '(begin (want-load 'ctypal 'ctywide 'palshaft) (want-sound 'ctywide1 'palcab1 'palcab2))
                 :on-deactivate #f
