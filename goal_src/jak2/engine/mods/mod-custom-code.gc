@@ -380,6 +380,92 @@
             )
           )
         )
+      (cond ;; disable endlessfall event and deathplane collision to land on new pal2cab from palroof
+         ((and (= (level-status *level* 'pal2cab) 'active)                       ;; if in this level 
+               (task-closed? "fortress-save-friends-resolution")                 ;; if this task is closed
+               (or  (in-bubble? (meters 269.39) (meters 401.29) (meters 537.85)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 273.13) (meters 401.29) (meters 542.44)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 275.87) (meters 401.29) (meters 547.19)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 280.87) (meters 401.29) (meters 544.99)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 277.72) (meters 401.29) (meters 539.48)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 275.61) (meters 401.29) (meters 533.52)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 280.90) (meters 401.29) (meters 528.12)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 286.57) (meters 401.29) (meters 534.16)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 291.15) (meters 401.29) (meters 538.51)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 298.12) (meters 401.29) (meters 536.40)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 296.74) (meters 401.29) (meters 530.60)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 293.42) (meters 401.29) (meters 524.76)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 288.70) (meters 401.29) (meters 520.11)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 285.86) (meters 401.29) (meters 541.49)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 307.98) (meters 401.29) (meters 533.25)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 305.18) (meters 401.29) (meters 527.77)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 302.90) (meters 401.29) (meters 522.45)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 300.36) (meters 401.29) (meters 516.15)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 295.75) (meters 401.29) (meters 509.96)  ;; location x y z 
+                                (meters 14.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 303.15) (meters 401.29) (meters 502.20)  ;; location x y z 
+                                (meters 25.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 307.33) (meters 401.29) (meters 510.57)  ;; location x y z 
+                                (meters 25.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 312.09) (meters 401.29) (meters 516.90)  ;; location x y z 
+                                (meters 25.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 317.52) (meters 401.29) (meters 525.11)  ;; location x y z 
+                                (meters 25.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 321.28) (meters 401.29) (meters 531.01)  ;; location x y z 
+                                (meters 25.0)                                    ;; bubble size
+                      )
+                )  
+            )
+          (script-eval '(setting-pers endlessfall mode #f))
+          (logclear! (-> *target* control root-prim prim-core collide-with) (collide-spec backgnd))
+          )
+         (else
+          (when *target*
+            (logior! (-> *target* control root-prim prim-core collide-with) (collide-spec backgnd))
+            )
+          )
+        )
       )
 
     (defun custom-music-volume-manager ()
