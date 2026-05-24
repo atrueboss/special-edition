@@ -54,23 +54,13 @@
                 ],
 
   "actors" : [
-      {
-      "trans": [362.77, 393.58,  72.33], // translation
-      "etype": "skill",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.00,   0.73,   0.00,   0.67], // rotation
-      "bsphere": [362.77, 393.58,  72.33, 500], // bounding sphere
-      "lump": {
-        "name": "skill-98"
-      }
-    },
     {
   "aid": 100004,
-  "trans": [773.004,   454.431, 127.472],
+  "trans": [775.271,   454.237, 126.024],
   "etype": "com-airlock-outer",
   "game_task": 0,
-  "quat": [0.00, -0.468826, 0.00, 0.883291],
-  "bsphere": [773.004,   454.431, 127.472, 10],
+  "quat": [0.00, -0.452992, 0.00, 0.891514],
+  "bsphere": [775.271,   454.237, 126.024, 10],
   "lump": {
     "name": "com-airlock-outer-70",
     "distance": ["meters", 20.0],
@@ -88,6 +78,42 @@
   //       "name":"drill-barons-ship-69"
   //     }
   //   } 
+    {
+      "trans": [757.18, 454.43, 135.54],
+      "etype": "crate",
+      "game_task": 0,
+      "kill_mask": 0,
+      "quat": [0.00,  -0.66,   0.00,  -0.74],
+      "bsphere": [757.18, 454.43, 135.54, 10],
+      "lump": {
+        "name": "crate-1252",
+        "eco-info": ["eco-info", "(pickup-type ammo-yellow)", 60]
+      }
+    },
+    {
+      "trans": [757.14, 454.43, 131.90],
+      "etype": "crate",
+      "game_task": 0,
+      "kill_mask": 0,
+      "quat": [0.00,   0.74,   0.00,   0.66],
+      "bsphere": [757.14, 454.43, 131.90, 10],
+      "lump": {
+        "name": "crate-1253",
+        "eco-info": ["eco-info", "(pickup-type ammo-blue)", 60]
+      }
+    },
+    {
+      "trans": [753.88, 454.43, 133.00],
+      "etype": "crate",
+      "game_task": 0,
+      "kill_mask": 0,
+      "quat": [0.00,   0.99,   0.00,  -0.13],
+      "bsphere": [753.88, 454.43, 133.00, 10],
+      "lump": {
+        "name": "crate-1254",
+        "eco-info": ["eco-info", "(pickup-type ammo-dark)", 3]
+      }
+    },
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// COPIED PARTICLE LAUNCHERS AND WINDMILLS FROM PALCAB /////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
