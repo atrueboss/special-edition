@@ -16382,7 +16382,7 @@
                  :continues '((new 'static 'continue-point
                     :name "pal2cab-start"
                     :level 'pal2cab
-                    :trans (new 'static 'vector :x (meters 763.648) :y (meters 454.269) :z (meters 132.979) :w 1.0)
+                    :trans (new 'static 'vector :x (meters 764.38) :y (meters 454.43) :z (meters 134.79) :w 1.0)
                     :quat (new 'static 'vector :y 0.4380 :w -0.8989)
                     :camera-trans (new 'static 'vector :x (meters 792.3282) :y (meters 459.4106) :z (meters 114.5609) :w 1.0)
                     :camera-rot (new 'static 'inline-array vector3s 3
@@ -16408,7 +16408,7 @@
                  :load-commands '()
                  :alt-load-commands '()
                  :bsp-mask #xffffffffffffffff
-                 :buttom-height (meters -100)
+                 :buttom-height (meters 250)
                  :run-packages '("common")
                  :wait-for-load #t
                  :login-func #f
