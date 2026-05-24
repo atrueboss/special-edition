@@ -347,20 +347,20 @@
           (script-eval '(want-display 'ctywide 'display))
           )
         )
+      ;; == ex-resca
       (cond ;; display ex-resca when entering fortress
-         ((and (or (= (level-status *level* 'fordumpa) 'active)             ;; if in this level
-                   (= (level-status *level* 'forresca) 'active))             
+         ((and (= (level-status *level* 'ex-resca) 'loaded)             ;; if in this level            
                (in-bubble? (meters 749.41) (meters  14.51) (meters 226.62)  ;; location x y z 
-                           (meters 10.0)                                    ;; bubble size
+                           (meters 50.0)                                    ;; bubble size
                  )    
             )
           (script-eval '(want-display 'ex-resca 'display))
           )
         )
       (cond ;; load ex-resca if you turn back on forresca path
-         ((and (= (level-status *level* 'forresca) 'active)                 ;; if in this level 
+         ((and (= (level-status *level* 'ex-resca) 'loaded)                 ;; if in this level 
                (in-bubble? (meters 682.02) (meters  20.61) (meters 236.28)  ;; location x y z 
-                           (meters 30.0)                                    ;; bubble size
+                           (meters 40.0)                                    ;; bubble size
                  )    
             )
           (script-eval '(want-display 'ex-resca 'display))
