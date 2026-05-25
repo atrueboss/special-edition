@@ -185,7 +185,7 @@
         (new 'static 'race-decision-point :pos 0.7246 :shortcuts #x8 :safe-paths #xf7)
         (new 'static 'race-decision-point :pos 0.7691 :decision-type #x1)
         (new 'static 'race-decision-point :pos 0.8896 :decision-type #x1)
-        (new 'static 'race-decision-point :pos 0.9565 :shortcuts #x2 :safe-paths #xfd)
+        (new 'static 'race-decision-point :pos 0.9565 :safe-paths #xfd)
         )
       :level 'stadiumd
       :borrow-level 'lracedf

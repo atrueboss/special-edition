@@ -277,6 +277,10 @@
                 (if (< (+ (-> arg0 target-pos) (-> this target-pos-offset)) (-> this pos))
                     (set! f0-10 (-> arg0 info ai-min-speed-factor))
                     )
+                ;; boost Errol's speed-factor target
+                (if (= (-> this rider) 2) ;; errol racer
+                    (set! f0-10 (* f0-10 1.2)) ;; make him 1.2x faster
+                    )
                 (seek! (-> this speed-factor) f0-10 (* 0.2 (seconds-per-frame)))
                 )
               0

@@ -945,7 +945,11 @@
   :event vehicle-event-handler
   :enter (behavior ()
     (set-time! (-> self state-time))
-    (set! (-> self damage-factor) (-> self info damage-factor))
+    (set! (-> self damage-factor)
+      (if (= (-> self race racer-state rider) 2) ;; make errol invincible to crashing in race
+          0.0
+          (-> self info damage-factor))
+      )
     (vehicle-method-143 self)
     (logior! (-> self flags) (rigid-body-object-flag ignition))
     )
