@@ -77,7 +77,16 @@
   //     "lump": {
   //       "name":"drill-barons-ship-69"
   //     }
-  //   } 
+  //   }
+    {
+      "trans": [272.79, 372.37, 538.26],
+      "etype": "skill",
+      "quat": [0, 0, 0, 1],
+      "bsphere": [272.79, 372.37, 538.26, 10],
+      "lump": {
+        "name": "skill-98"
+      }
+    },
     {
       "trans": [757.18, 454.43, 135.54],
       "etype": "crate",

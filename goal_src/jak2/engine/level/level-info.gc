@@ -16403,6 +16403,29 @@
                       )
                     :want-sound (new 'static 'array symbol 3 'ctywide1 'ctywide2 'palcab1)
                     )
+                    (new 'static 'continue-point
+                    :name "pal2cab-end"
+                    :level 'pal2cab
+                    :trans (new 'static 'vector :x (meters 302.8301) :y (meters 381.8458) :z (meters 516.0690) :w 1.0)
+                    :quat (new 'static 'vector :y -0.0165 :w -0.9998)
+                    :camera-trans (new 'static 'vector :x (meters 308.0040) :y (meters 386.9959) :z (meters 504.6910) :w 1.0)
+                    :camera-rot (new 'static 'inline-array vector3s 3
+                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.0000 0.4114 -0.0498))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 0.9926 0.1104 -0.4084))
+                      (new 'static 'vector3s :data (new 'static 'array float 3 -0.4084 -0.1211 0.9046))
+                      )
+                    :on-goto #f
+                    :vis-nick 'pal2cab
+                    :want (new 'static 'inline-array level-buffer-state 6
+                      (new 'static 'level-buffer-state :name 'pal2cab :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name 'palroof :display? 'display :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+                      )
+                    :want-sound (new 'static 'array symbol 3 'ctywide1 'ctywide2 'palcab1)
+                    )
                   )
                  :tasks '()
                  :priority 100
