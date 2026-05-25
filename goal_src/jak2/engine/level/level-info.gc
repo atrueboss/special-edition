@@ -2790,8 +2790,9 @@
     :activate-func 'palroof-activate
     :deactivate-func 'palroof-deactivate
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160)
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-palroof)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f

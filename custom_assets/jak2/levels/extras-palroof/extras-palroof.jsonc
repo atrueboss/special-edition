@@ -51,6 +51,65 @@
                 ],
 
   "actors" : [
-    
+    {
+      "trans": [286.317, 389.28, 525.26],
+      "etype": "pal-flip-step",
+      "game_task": 0,
+      "kill_mask": 0,
+      "quat": [0, 0.365307, 0, 0.930887],
+      "bsphere": [286.317, 389.28, 525.26, 10],
+      "lump": {
+        "name": "pal-flip-step-11",
+        "task-name": ["string", "palace-cable-resolution"]
+      }
+    },
+    {
+      "trans": [282.681, 395.831, 528.885],
+      "etype": "pal-flip-step",
+      "game_task": 0,
+      "kill_mask": 0,
+      "quat": [0, 0.352548, 0, 0.935794],
+      "bsphere": [282.681, 395.831, 528.885, 10],
+      "lump": {
+        "name": "pal-flip-step-12",
+        "task-name": ["string", "palace-cable-resolution"]
+      }
+    },
+    {
+      "trans": [278.822, 400.0, 533.141],
+      "etype": "pal-flip-step",
+      "game_task": 0,
+      "kill_mask": 0,
+      "quat": [0, 0.394129, 0, 0.919055],
+      "bsphere": [278.822, 400.0, 533.141, 10],
+      "lump": {
+        "name": "pal-flip-step-13",
+        "task-name": ["string", "palace-cable-resolution"]
+      }
+    },
+    {
+      "trans": [256.85, 408.012, 709.802],
+      "etype": "pal-flip-step",
+      "game_task": 0,
+      "kill_mask": 0,
+      "quat": [0, 0.257342, 0, 0.96632],
+      "bsphere": [256.85, 408.012, 709.802, 10],
+      "lump": {
+        "name": "pal-flip-step-14",
+        "task-name": ["string", "palace-cable-resolution"]
+      }
+    },
+    {
+      "trans": [248.482, 408.352, 714.154],
+      "etype": "pal-flip-step",
+      "game_task": 0,
+      "kill_mask": 0,
+      "quat": [0, 0.176012, 0, 0.984388],
+      "bsphere": [248.482, 408.352, 714.154, 10],
+      "lump": {
+        "name": "pal-flip-step-15",
+        "task-name": ["string", "palace-cable-resolution"]
+      }
+    }
   ]
 }

@@ -15,7 +15,6 @@
   "com-airlock-outer-ag.go"
   "pal-electric-fan-ag.go"
   "pal-cable-nut-ag.go"
-  "pal-flip-step-ag.go"
   "pal-rot-gun-ag.go"
   "pal-falling-plat-ag.go"
   "searchlight-ag.go"
