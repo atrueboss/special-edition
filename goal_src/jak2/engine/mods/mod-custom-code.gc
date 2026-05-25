@@ -380,6 +380,9 @@
             )
           )
         )
+      (when *target*
+        (logior! (-> *target* control root-prim prim-core collide-with) (collide-spec backgnd))
+        )
       (cond ;; disable endlessfall event and deathplane collision to land on new pal2cab from palroof
          ((and (= (level-status *level* 'pal2cab) 'active)                       ;; if in this level 
                (task-closed? "fortress-save-friends-resolution")                 ;; if this task is closed
@@ -460,10 +463,19 @@
           (script-eval '(setting-pers endlessfall mode #f))
           (logclear! (-> *target* control root-prim prim-core collide-with) (collide-spec backgnd))
           )
-         (else
-          (when *target*
-            (logior! (-> *target* control root-prim prim-core collide-with) (collide-spec backgnd))
+        )
+      (cond ;; ignore invisible wall that leads to new palroof area
+         ((and (= (level-status *level* 'palroof) 'active)                       ;; if in this level 
+               (task-closed? "fortress-save-friends-resolution")                 ;; if this task is closed
+               (or  (in-bubble? (meters 253.84) (meters 416.18) (meters 712.03)  ;; location x y z 
+                                (meters 15.0)                                    ;; bubble size
+                      )
+                    (in-bubble? (meters 253.84) (meters 411.93) (meters 712.03)  ;; location x y z 
+                                (meters 15.0)                                    ;; bubble size
+                      )
+                )  
             )
+          (logclear! (-> *target* control root-prim prim-core collide-with) (collide-spec backgnd))
           )
         )
       )
