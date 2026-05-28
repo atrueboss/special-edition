@@ -1150,7 +1150,6 @@
             )
            (else
              (format #t "missed a ring (ring-id ~d, sub-state ~d)~%" gp-0 (-> self sub-state))
-             (go-virtual fail)
              )
            )
          )
@@ -1181,6 +1180,19 @@
               (go-virtual fail)
               )
           )
+        )
+      ;; fail if player tries to cut course near tomb entrance
+      (when (or (in-bubble? (meters 190.48) (meters 11.09) (meters 885.22)  ;; location
+                            (meters 30.0))                                  ;; size
+                (in-bubble? (meters 192.14) (meters  11.69) (meters 912.15) ;; location
+                            (meters 30.0))                                  ;; size
+              )
+        (go-virtual fail)
+        )
+      ;; fail if player tries to cut course in central plaza
+      (when (in-bubble? (meters  82.05) (meters  10.80) (meters 232.04)  ;; location
+                        (meters 200.0))                                  ;; size
+        (go-virtual fail)
         )
       (while (< (-> self count) (-> self max-count))
         (let ((s4-2 (-> s5-0 (-> self count))))
