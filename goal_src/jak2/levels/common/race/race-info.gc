@@ -1111,19 +1111,18 @@
       :min-delay (seconds 1)
       :max-delay (seconds 2)
       :list (new 'static 'boxed-array :type string
-        "ero082"
-        "ero083"
+        "ero007"
+        "ero012"
+        "ero022"
+        "ero028"
+        "ero030"        
+        "ero034"
+        "ero045"
+        "ero053"
         "ero084"
         "ero085"
-        "ero086"
-        "ero087"
-        "ero088"
         "ero089"
         "ero090"
-        "ero091"
-        "ero092"
-        "ero093"
-        "ero094"
         "ero095"
         )
       )

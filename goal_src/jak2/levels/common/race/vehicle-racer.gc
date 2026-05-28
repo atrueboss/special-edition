@@ -338,8 +338,35 @@
              )
     (cond
       ((-> arg0 rbody)
-       (dotimes (s4-0 (-> this info seat-count))
-         (send-event (handle->process (-> this rider-array s4-0)) 'vehicle-got-hit arg0)
+       (let ((hit-errol #f)
+             (errol-vehicle (the-as process-drawable #f)))
+         (when *race-state*
+           (dotimes (i (-> *race-state* racer-count))
+             (let* ((racer (-> *race-state* racer-array i))
+                    (racer-proc (handle->process (-> racer racer))))
+               (when (and (= (-> racer rider) 2)
+                          racer-proc
+                          (< (vector-vector-distance
+                               (-> this root trans)
+                               (-> (the-as process-drawable racer-proc) root trans))
+                             30720.0) ;; ~7.5 meters - bikes must be touching to collide
+                          )
+                 (set! hit-errol #t)
+                 (set! errol-vehicle (the-as process-drawable racer-proc))
+                 )
+               )
+             )
+           )
+         (cond
+           (hit-errol
+            (speech-control-method-12 *speech-control* errol-vehicle (speech-type speech-type-55))
+            )
+           (else
+            (dotimes (s4-0 (-> this info seat-count))
+              (send-event (handle->process (-> this rider-array s4-0)) 'vehicle-got-hit arg0)
+              )
+            )
+           )
          )
        )
       (else

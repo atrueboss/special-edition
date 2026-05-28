@@ -165,6 +165,32 @@
              (format #t "racer-state::end-lap: play speech race-errol-lose~%")
              (speech-control-method-12 *speech-control* (the-as process-drawable s4-0) (speech-type speech-type-56))
              )
+            ((0 1)
+             (when (let ((errol-present #f))
+                     (dotimes (i (-> arg0 racer-count))
+                       (if (= (-> arg0 racer-array i rider) 2)
+                           (set! errol-present #t)
+                           )
+                       )
+                     errol-present)
+               (case (the int (* (rand-vu) 7.0))
+                  ;; Errol: "You see Jak, I win, and I get what I want... Someday I will be baron..."
+                  ((0) (add-process *gui-control* s4-0 (gui-channel daxter) (gui-action play) "ero086" -99.0 0))
+                  ;; Errol: "I should have known you'd be no match."
+                  ((1) (add-process *gui-control* s4-0 (gui-channel daxter) (gui-action play) "ero087" -99.0 0))
+                  ;; Errol: "I win, Keira's going to love me!"
+                  ((2) (add-process *gui-control* s4-0 (gui-channel daxter) (gui-action play) "ero088" -99.0 0))
+                  ;; Errol: "Again, I prove my superiority"
+                  ((3) (add-process *gui-control* s4-0 (gui-channel daxter) (gui-action play) "ero091" -99.0 0))
+                  ;; Errol: "You see? You are no match for me."
+                  ((4) (add-process *gui-control* s4-0 (gui-channel daxter) (gui-action play) "ero092" -99.0 0))
+                  ;; Errol: "Hahahaha, pathetic insect, I win!"
+                  ((5) (add-process *gui-control* s4-0 (gui-channel daxter) (gui-action play) "ero094" -99.0 0))
+                  ;; Errol: "It was easier than I thought to beat you."
+                  ((6) (add-process *gui-control* s4-0 (gui-channel daxter) (gui-action play) "ero083" -99.0 0))
+                )
+               )
+             )
             )
           )
         )
