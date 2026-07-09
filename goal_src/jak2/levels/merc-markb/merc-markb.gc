@@ -866,6 +866,7 @@
                            )
                          )
          (rank-string (cond
+                        ((>= points 1100000)"Greatest of All Time!")
                         ((>= points 1000000)"Renegade")
                         ((>= points 900000) "Heir of Mar")
                         ((>= points 800000) "The Chosen One")
