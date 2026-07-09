@@ -296,16 +296,6 @@
           )
         )
       )
-      
-    (defun custom-region-hacks () ;; not working perfectly, kinda buggy
-      (custom-region 0
-        (meters 756.31) (meters 11.57) (meters 226.99)
-        (meters 10.0)   ;; height
-        (meters 15.0)   ;; width
-        (lambda () (script-eval '(begin (want-load 'forresca)))) ;; on-enter
-        (lambda () (script-eval '(want-load 'forresca #f)))      ;; on-exit
-        )
-      )
 
     (defun door-hacks ()
     ;; == fortress
@@ -322,6 +312,21 @@
       (let ((door (entity-by-name "fort-entry-gate-7"))) ;; main exit of forresca - lower notice distance to stop annoying unintended loads 
         (when door                                       
           (set! (-> (the (pointer float) (res-lump-struct door 'distance pointer)) 0) (meters 5))
+          )
+        )
+      )
+
+    (defun elevator-hacks ()
+      (let ((elev (entity-by-name "com-elevator-69")))
+        (when elev
+          (set! (-> (the-as (pointer pair) (res-lump-struct elev 'on-activate pointer)) 0)
+            '(when (send-event self 'player-ridden?)
+              (set-setting! 'allow-look-around #f (the-as float 0) 0)
+              ))
+          (set! (-> (the-as (pointer pair) (res-lump-struct elev 'on-deactivate pointer)) 0)
+            '(begin
+              (remove-setting! 'allow-look-around)
+              ))
           )
         )
       )
@@ -525,8 +530,8 @@
       (begin-game-mod-explanation-hint)
       (better-hover-cam)
       (vanilla-region-hacks)
-      ;; (custom-region-hacks)
       (door-hacks)
+      (elevator-hacks)
       (bubble-hacks)
       (custom-music-volume-manager)
       (custom-music-player)

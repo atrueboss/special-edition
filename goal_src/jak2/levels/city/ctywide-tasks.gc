@@ -558,31 +558,21 @@
   TASK_MANAGER_FAIL_HOOK
   (lambda :behavior task-manager
     ()
-    (when (and *race-state*
-               (let ((errol-present #f))
-                 (dotimes (i (-> *race-state* racer-count))
-                   (if (= (-> *race-state* racer-array i rider) 2)
-                       (set! errol-present #t)
-                       )
-                   )
-                 errol-present)
-               )
-      (case (the int (* (rand-vu) 7.0))
-        ;; Errol: "You see Jak, I win, and I get what I want... Someday I will be baron..."
-        ((0) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero086" -99.0 0))
-        ;; Errol: "I should have known you'd be no match."
-        ((1) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero087" -99.0 0))
-        ;; Errol: "I win, Keira's going to love me!"
-        ((2) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero088" -99.0 0))
-        ;; Errol: "Again, I prove my superiority"
-        ((3) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero091" -99.0 0))
-        ;; Errol: "You see? You are no match for me."
-        ((4) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero092" -99.0 0))
-        ;; Errol: "Hahahaha, pathetic insect, I win!"
-        ((5) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero094" -99.0 0))
-        ;; Errol: "It was easier than I thought to beat you."
-        ((6) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero083" -99.0 0))
-        )
+    (case (the int (* (rand-vu) 7.0))
+      ;; Errol: "You see Jak, I win, and I get what I want... Someday I will be baron..."
+      ((0) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero086" -99.0 0))
+      ;; Errol: "I should have known you'd be no match."
+      ((1) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero087" -99.0 0))
+      ;; Errol: "I win, Keira's going to love me!"
+      ((2) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero088" -99.0 0))
+      ;; Errol: "Again, I prove my superiority"
+      ((3) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero091" -99.0 0))
+      ;; Errol: "You see? You are no match for me."
+      ((4) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero092" -99.0 0))
+      ;; Errol: "Hahahaha, pathetic insect, I win!"
+      ((5) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero094" -99.0 0))
+      ;; Errol: "It was easier than I thought to beat you."
+      ((6) (add-process *gui-control* (the-as process-drawable self) (gui-channel daxter) (gui-action play) "ero083" -99.0 0))
       )
     (none)
     )
@@ -600,7 +590,7 @@
 
 (copy-hooks!
   (-> *game-info* sub-task-list (game-task-node stadium-burning-bush-race-class1-resolution))
-  (-> *game-info* sub-task-list (game-task-node stadium-race-class1-race))
+  (-> *game-info* sub-task-list (game-task-node stadium-race-class3-race))
   )
 
 (copy-hooks!
@@ -615,7 +605,7 @@
 
 (copy-hooks!
   (-> *game-info* sub-task-list (game-task-node stadium-burning-bush-race-class1-r-resolution))
-  (-> *game-info* sub-task-list (game-task-node stadium-race-class1-race))
+  (-> *game-info* sub-task-list (game-task-node stadium-race-class3-race))
   )
 
 (set-subtask-hook!

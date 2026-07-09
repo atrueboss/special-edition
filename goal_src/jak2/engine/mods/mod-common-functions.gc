@@ -293,9 +293,7 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
 (defun in-bubble? ((x float) (y float) (z float) (w float))
   (let ((bubble-center (new 'stack-no-clear 'vector))
         (result #f))
-    (set-vector! bubble-center x y z 1.0) ;; Set up the bubble center position
-    
-    ;; Calculate if target is in bubble
+    (set-vector! bubble-center x y z 1.0)
     (set! result
       (<= 
         (vector-vector-distance 
@@ -305,8 +303,6 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
         (/ w 2.0)
         )
       )
-    
-    ;; Draw the debug sphere when debug mode is active
     (when *debug-segment*
       (add-debug-sphere 
         #t 
@@ -314,57 +310,12 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
         bubble-center 
         (/ w 2.0)
         (if result
-            (static-rgba #x00 #xff #x00 #x40)  ;; Green if inside
-            (static-rgba #xff #x00 #x00 #x40)  ;; Red if outside
+            (static-rgba #x00 #xff #x00 #x40)  ;; Green if jak inside
+            (static-rgba #xff #x00 #x00 #x40)  ;; Red if jak outside
             )
         )
       )
-    ;; Return the result
     result
-    )
-  )
-
-(define *custom-region-states* (new 'static 'boxed-array :type symbol :length 16 #f #f #f #f #f #f #f #f #f #f #f #f #f #f #f #f))
-(defun custom-region ((id int) (x float) (y float) (z float) (height float) (width float) (on-enter function) (on-exit function))
-  "Flat plane region trigger on Z axis. id must be unique (0-15)."
-  (when *target*
-    (let* ((pos (target-pos 0))
-           (inside? (and
-            (< (fabs (- (-> pos x) x)) (/ width 2.0))
-            (< (fabs (- (-> pos y) y)) (/ height 2.0))
-            (< (fabs (- (-> pos z) z)) (meters 2.0))  ;; 2 meter thick plane
-            ))
-           (was-inside? (-> *custom-region-states* id))
-           )
-      (when *debug-segment*
-        (let ((center (new 'stack-no-clear 'vector))
-              (half-ext (new 'stack-no-clear 'vector))
-              )
-          (set-vector! center x y z 1.0)
-          (set-vector! half-ext (/ width 2.0) (/ height 2.0) (meters 2.0) 1.0)
-          (add-debug-box
-            #t
-            (bucket-id debug-no-zbuf1)
-            center
-            half-ext
-            (if inside?
-                (static-rgba #x00 #xff #x00 #x40)
-                (static-rgba #xff #x00 #x00 #x40)
-                )
-            )
-          )
-        )
-      (cond
-        ((and inside? (not was-inside?))
-         (set! (-> *custom-region-states* id) #t)
-         (when on-enter ((the (function none) on-enter)))
-         )
-        ((and (not inside?) was-inside?)
-         (set! (-> *custom-region-states* id) #f)
-         (when on-exit ((the (function none) on-exit)))
-         )
-        )
-      )
     )
   )
 

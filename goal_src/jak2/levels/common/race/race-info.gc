@@ -202,7 +202,7 @@
       :race-mesh-name "race-mesh-1"
       :path-group-name "errol"
       :task-node (game-task-node city-errol-challenge-race)
-      :ai-min-speed-factor 0.875
+      :ai-min-speed-factor 0.9
       :ai-max-speed-factor 1.2
       :ai-spread-factor 0.007
       :start-sphere (new 'static 'sphere :x -237117.44 :y 40509.44 :z 5523169.5 :r 122880.0)
